@@ -1,0 +1,58 @@
+
+
+.App {
+  height: 80vh;
+}
+
+.register.container {
+  max-width:600px;
+}
+
+
+.register .card {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  text-align: center;
+  color: $bluegrey;
+  background-color: #f8f9fe;
+}  
+.auth-icons img {
+  width: 20px;
+  margin-right: 0.25rem;
+  vertical-align: middle;
+}
+
+.register form input {
+  width: 100%;
+}
+.register form .inputs {
+  margin-bottom: 0;
+}
+
+.register form input[type='checkbox'] {
+  position: relative;
+  width: 1rem;
+  height: 1.25rem;
+  box-sizing: border-box;
+  padding: 0;
+  outline: none;
+
+}
+.password-strength {
+  font-style: italic;
+}
+.password-strength span {
+  color: $green;
+  font-weight: bold;
+}
+.privacy, .password-strength {
+  justify-content: left;
+  text-align: left;
+}
+
+.register .privacy label {
+  justify-content: left;
+  position: relative;
+  left:-1rem;
+}

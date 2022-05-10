@@ -1,0 +1,47 @@
+@import '../../../styles/_variables.scss';
+
+.row {
+  justify-content: space-between;
+ 
+}
+.col {
+   
+}
+.card {
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  flex-grow: 1;
+  
+}
+.card .icon {
+  position: absolute;
+  top: 20px;
+  right:20px;
+}
+
+h3 {
+  font-weight: 200;
+  color: $darkblue;
+}
+.card .icon {
+  width:2.5rem;
+  height:2.5rem;
+  box-shadow: 0 0 2rem 0 rgba(136,152,170,.15);
+  border-radius: 50%;
+  color: $white;
+  padding: 18px;
+  text-align: center;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.card .icon i {
+    font-size: 1.25rem;
+}
+p span {
+  color: $green;
+  margin-right: .5rem;
+}

@@ -1,0 +1,53 @@
+/* Color Theme Swatches in Hex */
+  $lightblue: #CEDEF2;
+  $bluewhite: #f8f9fe;
+  $brightblue: #11cdef;
+  $deepblue: #1171ef;
+  $bluegrey:#525f7f;
+  $rose: #e992e9;
+  $lightgrey: #F2F2F2;
+  $white: #fff;
+  $black: #0D0D0D;
+  $darkblue:#172b4d;
+  $green: #5cb85c;
+  $red: #ed5938;
+  $muted: #8898aa;
+  $text: rgba(0, 0, 0, 0.6);
+
+// Gradients
+
+$green-grad: linear-gradient(87deg,#2dce89,#2dcecc);
+$red-grad: linear-gradient(87deg,#f5365c,#f56036);
+$purple-grad: linear-gradient(87deg,#5e72e4,#825ee4);
+$orange-grad: linear-gradient(87deg,#fb6340,#fbb140);
+  
+  /* Color Theme Swatches in RGBA */
+  $lightblue-rgba: rgba(205,221,242, 1);
+  $teal-rgba: rgba(42,112,140, 1);
+  $rose-rgba: rgba(216,177,169, 1);
+  $cream-rgba: rgba(242,242,242, 1);
+  $black-rgba: rgba(12,12,12, 1);
+  
+    /* Colors */
+    .red {color: $red;}
+    .rose {color: $rose;}
+    .deepblue {color: $deepblue}
+    .muted {color: $muted;}
+    .bluewhite {background-color: $bluewhite;}
+
+    // Backgrounds
+    .red-bg {
+      background: $red-grad;
+    }
+    .green-bg {
+      background: $green-grad;
+    }
+    .purple-bg {
+      background: $purple-grad;
+    }
+    .orange-bg {
+      background: $orange-grad;
+    }
+
+    // Hover
+    $opacity-hover: hsla(0,0%,100%,.65);

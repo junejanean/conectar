@@ -1,0 +1,16 @@
+@import '../../styles/_variables.scss';
+
+
+.fc .fc-button-primary {
+  background-color: $darkblue;
+}
+.fc .fc-button-primary:hover {
+  opacity: .9;
+}
+.fc .fc-daygrid-day.fc-day-today {
+  background-color:rgb(143, 223, 130, 0.3);
+
+}
+.fc .fc-bg-event {
+  background-color: rgba(235, 101, 75, 0.3);
+}

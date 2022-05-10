@@ -1,0 +1,51 @@
+@import '../../../styles/_variables.scss';
+
+
+body {
+  background: linear-gradient(87deg, $brightblue, $deepblue);
+}
+.main-content.landing {
+  position: relative;
+  grid-template-columns: none;
+  height: 80vh;
+}
+.main-content.landing .container {
+  padding: 0 4.7rem;
+  color: white;
+  font-weight: 100;
+  overflow:visible;
+  height: 100%;
+}
+
+
+.main-content.landing .showcase.grid {
+  position: relative;
+  overflow: hidden;
+  grid-template-columns: 50% 35%;
+  gap: 30px;
+  align-items: center;
+}
+
+.showcase h1 {
+  font-size:3rem;
+}
+.showcase img {
+  width: 75%;
+  margin-left:2rem;
+}
+.showcase .btn {
+  font-weight: 100;
+}
+footer nav li a:hover {
+  color: hsla(0,0%,100%,.65);
+}
+footer {
+  position: relative;
+  bottom: 0;
+  padding: 1rem;
+  font-weight: 100;
+}
+footer .copyright,
+footer a {
+  color: white;
+}

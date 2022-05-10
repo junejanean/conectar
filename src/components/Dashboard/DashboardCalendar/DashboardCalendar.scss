@@ -1,0 +1,223 @@
+@import '../../../styles/_variables.scss';
+
+
+.p-calendar {
+  position: relative;
+  max-width: 100%;
+  display: flex;
+}
+
+.p-calendar .p-inputtext {
+  flex: 1 1 auto;
+  width: 1%;
+}
+
+.p-calendar-w-btn-right .p-inputtext {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.p-calendar-w-btn-right .p-datepicker-trigger {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.p-calendar-w-btn-left .p-inputtext {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.p-calendar-w-btn-left .p-datepicker-trigger {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+.pi {
+font-family: primeicons;
+font-style: normal;
+font-weight: 400;
+-webkit-font-feature-settings: normal;
+-moz-font-feature-settings: normal;
+font-feature-settings: normal;
+font-variant: normal;
+text-transform: none;
+line-height: 1;
+display: inline-block;
+-webkit-font-smoothing: antialiased;
+}
+
+/* Fluid */
+.p-fluid .p-calendar {
+  display: flex;
+}
+
+.p-fluid .p-calendar .p-inputtext {
+  width: 1%;
+}
+
+/* Datepicker */
+.p-calendar .p-datepicker {
+  min-width: 100%;
+}
+
+.p-datepicker {
+width: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 0.5rem;
+  background-color: #fff;
+  color: $bluegrey;
+  border: 1px solid #ced4da;
+  border-radius: 6px;
+}
+
+.p-datepicker-inline {
+  display: inline-block;
+  position: static;
+  overflow-x: auto;
+}
+
+/* Header */
+.p-datepicker-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem;
+  color: $muted;
+  font-weight: 600;
+  margin: 0;
+  border-bottom: 1px solid #dee2e6;
+  border-top-right-radius: 6px;
+  border-top-left-radius: 6px;
+
+}
+
+.p-datepicker-header .p-datepicker-title {
+  margin: 0 auto;
+  color: $muted;
+}
+
+.p-datepicker-prev,
+.p-datepicker-next {
+  cursor: pointer;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  position: relative;
+}
+
+// Table
+
+.p-datepicker table {
+  margin: 0.5rem 0;
+}
+.p-datepicker table th {
+  padding: 0.2rem;
+  color: $muted;
+}
+.p-datepicker table th > span {
+  width: 2rem;
+  height: 2rem;
+}
+.p-datepicker table td {
+  padding: 0.2rem;
+}
+.p-datepicker table td > span {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  transition: box-shadow 0.2s;
+  border: 1px solid transparent;
+}
+
+/* Multiple Month DatePicker */
+.p-datepicker-multiple-month .p-datepicker-group-container {
+  display: flex;
+}
+
+.p-datepicker-multiple-month .p-datepicker-group-container .p-datepicker-group {
+  flex: 1 1 auto;
+}
+
+/* Multiple Month DatePicker */
+.p-datepicker-multiple-month .p-datepicker-group-container {
+  display: flex;
+}
+
+/* DatePicker Table */
+.p-datepicker table {
+width: 100%;
+border-collapse: collapse;
+}
+
+.p-datepicker td > span {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  margin: 0 auto;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Month Picker */
+.p-monthpicker-month {
+  width: 33.3%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  overflow: hidden;
+  position: relative;
+}
+
+/*  Button Bar */
+.p-datepicker-buttonbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Time Picker */
+.p-timepicker {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.p-timepicker button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  overflow: hidden;
+  position: relative;
+}
+
+.p-timepicker > div {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+/* Touch UI */
+.p-datepicker-touch-ui,
+.p-calendar .p-datepicker-touch-ui {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  min-width: 80vw;
+  transform: translate(-50%, -50%);
+}
+
+/* Year Picker */
+.p-yearpicker-year {
+  width: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  overflow: hidden;
+  position: relative;
+}

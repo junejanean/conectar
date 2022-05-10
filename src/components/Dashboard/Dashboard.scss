@@ -1,0 +1,127 @@
+@import '../../styles/_variables.scss';
+
+.dashboard {
+  margin: 20px;
+  flex-flow: column;
+
+}
+/* for landing page */
+/* .dashboard::before, .dashboard::after {
+  content: '';
+  position: absolute;
+  height: 100px;
+  bottom: -70px;
+  right: 0;
+  left: 0;
+  background: white;
+  transform: skewY(-5deg);
+  -webkit-transform:skewY(-5deg);
+  -moz-transform: skewY(-5deg);
+  -ms-transform: skewY(-5deg);
+} */
+
+.dashboard .card {
+  margin: 20px 0;
+}
+.dashboard .grid {
+  overflow: visible;
+  grid-template-columns: 40% 60%;
+  gap: 30px;
+  height: auto;
+}
+.dashboard .container {
+  max-width: none;
+  width: auto;
+  padding: 0 20px;
+
+}
+.dashboard .calendar h2 {
+
+}
+.dashboard h1 {
+  color: $white;
+}
+.dashboard .appointments {
+  width: 100%;
+}
+.dashboard .appointments .single-appt, .dashboard .appointments .appt-header, .calendar .add-appt {
+  max-height: 50px;
+  width: 100%;
+  flex-direction: row;
+  padding: 10px;
+  background-color: $lightgrey;
+  box-shadow: none;
+  margin: 10px 0;
+  align-items: center;
+}
+.dashboard .appointments .appt-header {
+  background-color: $darkblue;
+  font-weight: 200;
+  color: $lightgrey;
+  font-size: .8rem;
+}
+.dashboard .appointments .appt-header p {
+  padding: 0 10px;
+}
+.dashboard .appointments .appt-header p.date {
+  text-align: right;
+  flex-grow: 2;
+}
+.dashboard .single-appt.blocked, .calendar .add-appt.blocked {
+  background-color:rgb(239, 245, 248);
+  color:lightslategrey;
+}
+.dashboard .appt-details .card.single-appt {
+  max-height: fit-content;
+}
+.dashboard .appt-details {
+  display: flex;
+  margin-bottom: 20px;
+}
+.dashboard .appt-details .card {
+  margin: 0;
+}
+.dashboard .single-appt p {
+  padding: 0 5px;
+}
+.dashboard .single-appt p.time { 
+  font-weight:bold;
+  width: 80px;
+  font-size: .8rem;
+}
+.dashboard .single-appt p.name {
+  text-align: left;
+  padding: 0;
+}
+.dashboard .single-appt p.status {
+  color: $green;
+  font-size: .6rem;
+  max-width: 65px;
+}
+.dashboard .single-appt p.appt-type {
+  font-size: .8rem;
+  color: $bluegrey;
+}
+.dashboard .single-appt i.fa-chevron-down {
+  cursor: pointer;
+}
+.dashboard .calendar i {
+  margin-left: .5rem ;
+}
+.dashboard .calendar .add-appt {
+  justify-content: center;
+}
+
+.dashboard .single-appt:hover, .dashboard .add-appt:hover {
+  background-color:rgba(0, 0, 0, 0.03);
+}
+
+.dashboard .single-appt p:nth-child(2),
+.dashboard .single-appt p:nth-child(3) {
+  flex-grow: 1;
+} 
+.dashboard .single-appt p:nth-child(4) {
+  flex-grow:3;
+  justify-content: right;
+  text-align: right;
+}

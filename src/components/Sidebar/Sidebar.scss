@@ -1,0 +1,41 @@
+@import '../../styles/_variables.scss';
+
+
+.sidebar {
+  width: 220px;
+  padding: 20px 0;
+  border-color: rgba(0, 0, 0, 0.05);
+  box-shadow: 0 0 2rem 0
+  rgba(136, 152, 170, 15%);
+  z-index: 100;
+  background-color: $white;
+}
+.sidebar .logo {
+  margin: 20px;
+  display: flex;
+  justify-content: center;
+
+}
+.sidebar .logo img {
+  width: 140px;
+}
+.sidebar .flex {
+  justify-content: left;
+}
+.sidebar .nav-container {
+  padding: 0 1.5em;
+  
+}
+.sidebar .nav {
+  display: flex;
+  flex: 1 1;
+  flex-direction: column;
+}
+.sidebar .nav ul li:first-child {
+  margin-top: 3.5rem;
+}
+.sidebar .nav .settings {
+  margin-top: auto;
+  padding-bottom: 1.9rem;
+ 
+}

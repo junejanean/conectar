@@ -1,0 +1,73 @@
+@import '../../styles/_variables.scss';
+
+.card.details {
+  height: auto;
+}
+.patient-profile {
+  display: flex;
+  flex-direction: column;
+  flex-flow: column;
+  height: 100%;
+}
+.patient-list .patient, .patient-profile .card {
+  width: 100%;
+  padding: 10px;
+  background-color: $lightgrey;
+  box-shadow: none;
+  margin: 10px 0;
+  align-items: center;
+}
+
+.patient-profile .patient-header {
+  font-weight: 200;
+  background-color: $white;
+  font-size: .8rem;
+}
+.patient-header {
+  display: flex;
+ 
+  }
+.patient-header .card {
+  background-color: $lightgrey;
+  color: $bluegrey;
+  justify-content: space-between;
+}
+.patient-header .profile, .patient-header .appts {
+  flex-grow: 1;
+  cursor: pointer;
+}
+
+.patient-header .non-active {
+  background-color: $white;
+  border: 2px solid $lightgrey;
+}
+.patient-header .profile {
+  margin-right: 1rem;
+}
+.patient-header h4 {
+  padding: 0 10px;
+  text-align: center;
+  flex-grow: 2;
+}
+
+.card.profile-details, .card.profile-history {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 3;
+  align-items: flex-start;
+}
+.card.profile-details {
+  display: flex;
+}
+.card.profile-details p {
+  margin: 0;
+}
+.card.profile-details p span {
+  color: $text;
+}
+
+.card.profile-history {
+ 
+  
+}
