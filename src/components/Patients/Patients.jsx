@@ -4,7 +4,7 @@ import './Patients.scss';
 import Sidebar from '../Sidebar/Sidebar';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import cx from 'classnames';
 
 function Dashboard({ setLoggedIn }) {

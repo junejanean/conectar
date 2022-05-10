@@ -14,7 +14,6 @@ function Header({ setLoggedIn }) {
 	return (
 		<header>
 			<div className='header flex'>
-				<h2 className='flex-item'></h2>
 				<div className='header-right flex-item'>
 					<p>
 						<Link to='/#' onClick={handelLogout}>

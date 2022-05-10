@@ -1,12 +1,12 @@
-import React, { useNavigate } from 'react';
+import React from 'react';
 import Header from '../Header/Header';
 import Sidebar from '../Sidebar/Sidebar';
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import timeGridPlugin from '@fullcalendar/timegrid';
-import { INITIAL_EVENTS, createEventId } from './event-utils';
-import ReactTooltip from 'react-tooltip';
+// import { INITIAL_EVENTS, createEventId } from './event-utils';
+// import ReactTooltip from 'react-tooltip';
 import styles from './Appointments.module.scss';
 import './Appointments.scss';
 import cx from 'classnames';
@@ -18,15 +18,15 @@ function Appointments({ setLoggedIn }) {
 
 		calendarApi.unselect(); // clear date selection
 
-		if (title) {
-			calendarApi.addEvent({
-				id: createEventId(),
-				title,
-				start: selectInfo.startStr,
-				end: selectInfo.endStr,
-				allDay: selectInfo.allDay,
-			});
-		}
+		// if (title) {
+		// 	calendarApi.addEvent({
+		// 		id: createEventId(),
+		// 		title,
+		// 		start: selectInfo.startStr,
+		// 		end: selectInfo.endStr,
+		// 		allDay: selectInfo.allDay,
+		// 	});
+		// }
 	};
 	const handleEventClick = (clickInfo) => {
 		if (
