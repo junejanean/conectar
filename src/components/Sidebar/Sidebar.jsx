@@ -30,8 +30,8 @@ function Sidebar() {
 						</li>
 					</ul>
 					<div className='settings'>
-						<Link to='/Settings'>
-							<i class='fa-solid fa-gear p-1 rose'></i>Settings
+						<Link to='/MyProfile'>
+							<i class='fa-solid fa-gear p-1 rose'></i>MyProfile
 						</Link>
 					</div>
 				</div>

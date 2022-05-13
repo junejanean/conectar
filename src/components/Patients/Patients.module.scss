@@ -13,19 +13,17 @@
 }
 .patient-list .patient, .patient-profile .card, input {
   max-height: 50px;
-  width: 100%;
   flex-direction: row;
-  padding: 10px;
-  background-color: $lightgrey;
   box-shadow: none;
   margin: 10px 0;
   align-items: center;
   cursor: pointer;
+  background: $lightgrey;
+  }
+  .patient-list .patient.card.selected {
+    background: $darkblue;
+  }
 
-  }
-  .patient-list .patient:hover, .patient-profile .card:hover {
-    background-color:rgba(0, 0, 0, 0.03);
-  }
 
 .patient.search {
   background-color: $white;

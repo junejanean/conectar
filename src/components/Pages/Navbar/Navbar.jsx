@@ -5,16 +5,16 @@ import './Navbar.scss';
 function Navbar({ loggedIn, setLoggedIn }) {
 	const handelLogout = () => {
 		localStorage.removeItem('loggedIn');
-		setLoggedIn(false)
+		setLoggedIn(false);
 	};
 
 	return (
 		<>
 			<div className='navbar-horizontal p-2'>
 				<div className='container flex'>
-					<a href='#'>
+					<Link to='/'>
 						<img src='/imgs/conectar_logo_head_white.png' alt='' />
-					</a>
+					</Link>
 					<nav>
 						<ul>
 							<li>
@@ -51,18 +51,18 @@ function Navbar({ loggedIn, setLoggedIn }) {
 						</ul>
 					</nav>
 					<div class='social'>
-						<a href='#'>
+						<Link to='/'>
 							<i class='fab fa-github'></i>
-						</a>
-						<a href='#'>
+						</Link>
+						<Link to='/'>
 							<i class='fab fa-twitter'></i>
-						</a>
-						<a href='#'>
+						</Link>
+						<Link to='/'>
 							<i class='fab fa-facebook'></i>
-						</a>
-						<a href='#'>
+						</Link>
+						<Link to='/'>
 							<i class='fab fa-instagram'></i>
-						</a>
+						</Link>
 					</div>
 				</div>
 			</div>

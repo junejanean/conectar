@@ -21,20 +21,20 @@ function Login(props) {
 							<div className='card-header'>
 								<small className='muted'>Sign in with</small>
 								<div className='auth-icons row my-2'>
-									<a href='#' className='btn btn-nuetral'>
+									<Link to='/Login' className='btn btn-nuetral'>
 										<img
 											src='https://demos.creative-tim.com/argon-dashboard-pro-react/static/media/github.6c955556.svg'
 											alt=''
 										/>
 										Github
-									</a>
-									<a href='#' className='btn btn-nuetral'>
+									</Link>
+									<Link to='/Login' className='btn btn-nuetral'>
 										<img
 											src='	https://demos.creative-tim.com/argon-dashboard-pro-react/static/media/google.eae9aa93.svg'
 											alt=''
 										/>
 										Google
-									</a>
+									</Link>
 								</div>
 							</div>
 							<div className='card-body'>

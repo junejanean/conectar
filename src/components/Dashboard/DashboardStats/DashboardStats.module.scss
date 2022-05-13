@@ -2,28 +2,17 @@
 
 .row {
   justify-content: space-between;
- 
 }
-.col {
-   
-}
-.card {
-  flex-direction: column;
-  min-width: 0;
-  word-wrap: break-word;
-  flex-grow: 1;
-  
-}
+
 .card .icon {
   position: absolute;
   top: 20px;
   right:20px;
 }
-
-h3 {
-  font-weight: 200;
-  color: $darkblue;
+h5 {
+  color: $muted;
 }
+
 .card .icon {
   width:2.5rem;
   height:2.5rem;
@@ -35,6 +24,16 @@ h3 {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  
+}
+.card.stats-red .icon  {
+  background: $red-grad;
+}
+.card.stats-purple .icon  {
+  background: $purple-grad;
+}
+.card.stats-green .icon  {
+  background: $green-grad;
 }
 
 

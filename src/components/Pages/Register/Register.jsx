@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './Register.module.scss';
 import cx from 'classnames';
+import { Link } from 'react-router-dom';
 
 function Register() {
 	return (
@@ -12,20 +13,20 @@ function Register() {
 							<div className='card-header'>
 								<small className='muted'>Sign up with</small>
 								<div className='auth-icons row my-2'>
-									<a href='#' className='btn btn-nuetral'>
+									<Link to='/Register' className='btn btn-nuetral'>
 										<img
 											src='https://demos.creative-tim.com/argon-dashboard-pro-react/static/media/github.6c955556.svg'
 											alt=''
 										/>
 										Github
-									</a>
-									<a href='#' className='btn btn-nuetral'>
+									</Link>
+									<Link to='/Register' className='btn btn-nuetral'>
 										<img
 											src='	https://demos.creative-tim.com/argon-dashboard-pro-react/static/media/google.eae9aa93.svg'
 											alt=''
 										/>
 										Google
-									</a>
+									</Link>
 								</div>
 							</div>
 							<div className='card-body'>

@@ -1,15 +1,16 @@
-@import '../../styles/_variables.scss';
+@import '../../styles/global.scss';
 
 .card.details {
   height: auto;
 }
+
 .patient-profile {
   display: flex;
   flex-direction: column;
   flex-flow: column;
   height: 100%;
 }
-.patient-list .patient, .patient-profile .card {
+.patient-list .patient, .patient-profile .card, input {
   width: 100%;
   padding: 10px;
   background-color: $lightgrey;
@@ -17,7 +18,25 @@
   margin: 10px 0;
   align-items: center;
 }
-
+.patient-list .patient .selected {
+  background: $darkblue;
+}
+.patient-profile  {
+  color: $text;
+}
+.patient-profile h6 {
+  text-transform: uppercase;
+  
+}
+.patient-list .patient:hover {
+  background-color:rgba(0, 0, 0, 0.03);
+}
+.patient-profile .title {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+}
 .patient-profile .patient-header {
   font-weight: 200;
   background-color: $white;
@@ -26,10 +45,10 @@
 .patient-header {
   display: flex;
  
-  }
+}
 .patient-header .card {
   background-color: $lightgrey;
-  color: $bluegrey;
+  color: $text;
   justify-content: space-between;
 }
 .patient-header .profile, .patient-header .appts {
@@ -60,8 +79,37 @@
 .card.profile-details {
   display: flex;
 }
+.card.profile-details .detail {
+  background-color: $white;
+  align-items: flex-start; 
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+.card.profile-details .detail.basic {
+  height: 111px;
+  padding-bottom: 0;
+}
+.card.profile-details .detail-wrapper {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  gap: 1rem;
+}
+.card.profile-details .detail-wrapper .detail {
+  width: 48%;
+}
+.card.profile-details .detail-wrapper .detail.width3 {
+  width: 30%;
+}
+.card.profile-details .detail-wrapper .detail.width7 {
+  width: 70%
+}
+.card.profile-details .detail-wrapper .detail p {
+  width: 100%;
+}
 .card.profile-details p {
   margin: 0;
+  width: 54%;
 }
 .card.profile-details p span {
   color: $text;

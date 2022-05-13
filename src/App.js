@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from 'react';
-// import Footer from './components/Footer/Footer';
-// import Header from './components/Header/Header';
 import Dashboard from './components/Dashboard/Dashboard';
 import Landing from './components/Pages/Landing/Landing';
 import Login from './components/Pages/Login/Login';
@@ -12,7 +10,9 @@ import Footer from './components/Footer/Footer';
 import Appointments from './components/Appointments/Appointments';
 import Patients from './components/Patients/Patients';
 import './styles/global.scss';
+import './styles/stats.scss';
 import { Route, Routes } from 'react-router-dom';
+import MyProfile from './components/MyProfile/MyProfile';
 
 function App() {
 	const [loggedIn, setLoggedIn] = useState(false);
@@ -38,10 +38,12 @@ function App() {
 					element={<Appointments setLoggedIn={setLoggedIn} />}
 				/>
 				<Route path='/Patients' element={<Patients />} />
+				<Route path='/MyProfile' element={<MyProfile />} />
 				<Route path='/Register' element={<Register />} />
 				<Route path='/Login' element={<Login setLoggedIn={setLoggedIn} />} />
 			</Routes>
-			{/* <Footer /> */}
+			{!loggedIn && <Footer loggedIn={loggedIn} setLoggedIn={setLoggedIn} />}
+
 			{/* <div className='app-container'>
 				<div className='main-content'>
 					<Sidebar />

@@ -6,7 +6,7 @@ function Footer() {
 	return (
 		<>
 			<footer class='footer py-1'>
-				<div class='container grid'>
+				<div class='container flex'>
 					<div className='copyright'>
 						<p>Conectar | Copyright &copy; 2022</p>
 					</div>

@@ -1,17 +1,18 @@
 import React from 'react';
-import styles from './DashboardStats.module.scss';
+import styles from './MyProfileStats.module.scss';
+
 import cx from 'classnames';
 
-function DashboardStats() {
+function ProfileStats() {
 	return (
 		<div className='stats'>
 			<div className={cx(styles.row, ['row'])}>
-				<div className={cx(styles.card, ['card'], [styles['stats-red']])}>
+				<div className={cx(styles.card, ['card'], styles['stats-red'])}>
 					<div className='col'>
 						<h5>Number of Patients</h5>
 						<h3 className='md'>174</h3>
 					</div>
-					<div className={cx(styles.icon, ['col-auto'])}>
+					<div className={cx(styles.icon, ['icon'], ['col-auto'])}>
 						<i class='fa fa-users'></i>
 					</div>
 					<div className='col-auto'>
@@ -28,7 +29,7 @@ function DashboardStats() {
 						<h5>Appointments This Month</h5>
 						<h3 className='md'>67</h3>
 					</div>
-					<div className={cx(styles.icon, ['col-auto'])}>
+					<div className={cx(styles.icon, ['icon'], ['col-auto'])}>
 						<i class='fa-solid fa-calendar-check'></i>
 					</div>
 					<div className='col-auto'>
@@ -45,7 +46,7 @@ function DashboardStats() {
 						<h5>Billable Appointments</h5>
 						<h3 className='md'>$12,345</h3>
 					</div>
-					<div className={cx(styles.icon, ['col-auto'])}>
+					<div className={cx(styles.icon, ['icon'], ['col-auto'])}>
 						<i class='fa fa-coins'></i>
 					</div>
 					<div className='col-auto'>
@@ -62,4 +63,4 @@ function DashboardStats() {
 	);
 }
 
-export default DashboardStats;
+export default ProfileStats;

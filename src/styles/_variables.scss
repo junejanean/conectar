@@ -1,6 +1,6 @@
 /* Color Theme Swatches in Hex */
   $lightblue: #CEDEF2;
-  $bluewhite: #f8f9fe;
+  $bluewhite: #f6f9fc;
   $brightblue: #11cdef;
   $deepblue: #1171ef;
   $bluegrey:#525f7f;
@@ -51,3 +51,13 @@ $orange-grad: linear-gradient(87deg,#fb6340,#fbb140);
 
     // Hover
     $opacity-hover: hsla(0,0%,100%,.65);
+
+    // Selections
+    .selected {
+      background: $darkblue;
+      color: $white;
+      cursor: none;
+      &:hover {
+        background-color: $darkblue;
+      }
+    }
