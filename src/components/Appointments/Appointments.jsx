@@ -18,15 +18,15 @@ function Appointments({ setLoggedIn }) {
 
 		calendarApi.unselect(); // clear date selection
 
-		// if (title) {
-		// 	calendarApi.addEvent({
-		// 		id: createEventId(),
-		// 		title,
-		// 		start: selectInfo.startStr,
-		// 		end: selectInfo.endStr,
-		// 		allDay: selectInfo.allDay,
-		// 	});
-		// }
+		if (title) {
+			calendarApi.addEvent({
+				// id: createEventId(),
+				title,
+				start: selectInfo.startStr,
+				end: selectInfo.endStr,
+				allDay: selectInfo.allDay,
+			});
+		}
 	};
 	const handleEventClick = (clickInfo) => {
 		if (

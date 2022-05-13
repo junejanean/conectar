@@ -20,6 +20,7 @@
   cursor: pointer;
   background: $lightgrey;
   }
+
   .patient-list .patient.card.selected {
     background: $darkblue;
   }
@@ -31,6 +32,9 @@
   &:hover {
     background-color:$white;
   }
+}
+.patient-list input {
+  background: $white;
 }
 input {
   border: none;

@@ -4,11 +4,10 @@ import './Patients.scss';
 import Sidebar from '../Sidebar/Sidebar';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
-import { useNavigate } from 'react-router-dom';
 import cx from 'classnames';
 
 function Patients({ setLoggedIn }) {
-	const [tabs, setTabs] = useState(['Profile', 'Appointments']);
+	const [tabs] = useState(['Profile', 'Appointments']);
 	const [currentTab, setCurrentTab] = useState('Profile');
 	const [toggleApptDetails, setToggleApptDetails] = useState(false);
 
@@ -16,12 +15,6 @@ function Patients({ setLoggedIn }) {
 
 	const handleClick = () => {
 		setToggleApptDetails(!toggleApptDetails);
-	};
-	const navigate = useNavigate();
-	const handeleLogout = () => {
-		localStorage.removeItem('loggedIn');
-		setLoggedIn(false);
-		navigate('/');
 	};
 
 	return (

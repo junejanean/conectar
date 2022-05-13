@@ -4,25 +4,13 @@ import Sidebar from '../Sidebar/Sidebar';
 import MyProfileStats from '../MyProfile/MyProfileStats/MyProfileStats';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
-import { useNavigate } from 'react-router-dom';
 import cx from 'classnames';
 
 function MyProfile({ setLoggedIn }) {
 	const [tabs] = useState(['User Information', 'Contact Information']);
 	const [currentTab, setCurrentTab] = useState('User Information');
-	const [toggleApptDetails, setToggleApptDetails] = useState(false);
 
 	const switchTab = (tab) => setCurrentTab(tab);
-
-	const handleClick = () => {
-		setToggleApptDetails(!toggleApptDetails);
-	};
-	const navigate = useNavigate();
-	const handelLogout = () => {
-		localStorage.removeItem('loggedIn');
-		setLoggedIn(false);
-		navigate('/');
-	};
 
 	return (
 		<>

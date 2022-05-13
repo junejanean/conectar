@@ -40,7 +40,7 @@ function Header({ setLoggedIn }) {
 								<li className='dropdown-item'>
 									{' '}
 									<Link to='/MyProfile'>
-										<i class='fa-solid fa-gear'></i>MyProfile
+										<i class='fa-solid fa-gear'></i>Settings
 									</Link>
 								</li>
 
