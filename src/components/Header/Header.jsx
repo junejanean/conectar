@@ -28,7 +28,7 @@ function Header({ setLoggedIn }) {
 							<ul>
 								<li className='dropdown-header'>Welcome!</li>
 								<li className='dropdown-item'>
-									<Link to='/Settings'>
+									<Link to='/MyProfile'>
 										<i class='fa-solid fa-user'></i> My Profile
 									</Link>
 								</li>

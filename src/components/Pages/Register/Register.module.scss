@@ -6,11 +6,15 @@
 .my-1 {
   margin:.3rem 0;
 }
+.row {
+  max-width: none;
+}
 .card {
   flex-wrap: wrap;
   text-align: center;
   color: $bluegrey;
   background-color: $bluewhite;
+  max-width: 378px;
 }
 .form-group {
   margin:1.5rem 0 .5rem 0;
@@ -41,6 +45,7 @@ form input[type='checkbox'] {
 .privacy, .password-strength {
   justify-content: left;
   text-align: left;
+  align-items: center;
 }
 
 .privacy label {
