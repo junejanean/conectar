@@ -1,6 +1,6 @@
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/firestore';
-import { getAuth } from 'firebase/compat/auth';
+// import { getAuth } from 'firebase/compat/auth';
 
 import { initializeApp } from 'firebase/app';
 import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
