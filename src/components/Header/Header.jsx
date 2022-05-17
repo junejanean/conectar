@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useLogout } from '../../hooks/useLogout';
 import { useAuthContext } from '../../hooks/useAuthContext';
-import { signInWithGoogle } from '../../firebase/config';
 
 import './Header.scss';
 
@@ -22,8 +21,10 @@ function Header() {
 		<header>
 			<div className='header flex'>
 				<div onClick={handleClick} className='header-right flex-item'>
-					{profilePic && <img src={localStorage.getItem('profilePic')} />}
-					{!profilePic && <img src={'/imgs/dr_cornali-headshot.jpg'} />}
+					{profilePic && (
+						<img alt='' src={localStorage.getItem('profilePic')} />
+					)}
+					{!profilePic && <img alt='' src={'/imgs/dr_cornali-headshot.jpg'} />}
 					<h3 className='user sm'>Hello, {user.displayName}</h3>
 					<div className='dropdown'>
 						<div role='menu' className={`dropdown-menu card ${dropdownShow}`}>
