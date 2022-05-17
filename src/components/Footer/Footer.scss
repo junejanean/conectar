@@ -1,8 +1,9 @@
-@import '../../styles/_variables.scss';
+@use '../../styles/_variables';
 
 .footer {
-  color: $white;
+  color: variables.$white;
   font-size: .8rem;
+  font-weight: 200;
 }
 .footer .flex {
   justify-content: space-between;

@@ -1,19 +1,28 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useLogin } from '../../../hooks/useLogin';
+import { useNavigate } from 'react-router-dom';
+import Navbar from '../Navbar/Navbar';
+import { Link } from 'react-router-dom';
+import { signInWithGoogle } from '../../../firebase/config';
+// styles
 import styles from '../Register/Register.module.scss';
 import cx from 'classnames';
-import { Link, useNavigate } from 'react-router-dom';
 
-function Login(props) {
-	const navigate = useNavigate();
-	const handleLogin = (e) => {
+function Login() {
+	const [email, setEmail] = useState('');
+	const [password, setPassword] = useState('');
+	const { login, error, isPending } = useLogin();
+	let navigate = useNavigate();
+
+	const handleSubmit = (e) => {
 		e.preventDefault();
-		localStorage.setItem('loggedIn', 'present');
-		props.setLoggedIn(true);
+		login(email, password);
 		navigate('/Dashboard');
 	};
 
 	return (
 		<>
+			<Navbar />
 			<div className='main-content landing'>
 				<div className={cx(styles.container, ['container'], ['register'])}>
 					<div className='row my-2'>
@@ -21,14 +30,11 @@ function Login(props) {
 							<div className='card-header'>
 								<small className='muted'>Sign in with</small>
 								<div className='auth-icons row my-2'>
-									<Link to='/Login' className='btn btn-nuetral'>
-										<img
-											src='https://demos.creative-tim.com/argon-dashboard-pro-react/static/media/github.6c955556.svg'
-											alt=''
-										/>
-										Github
-									</Link>
-									<Link to='/Login' className='btn btn-nuetral'>
+									<Link
+										onClick={signInWithGoogle}
+										to='/Login'
+										className='btn btn-nuetral'
+									>
 										<img
 											src='	https://demos.creative-tim.com/argon-dashboard-pro-react/static/media/google.eae9aa93.svg'
 											alt=''
@@ -39,7 +45,7 @@ function Login(props) {
 							</div>
 							<div className='card-body'>
 								<small className='muted'>Or sign in with credentials</small>
-								<form action=''>
+								<form onSubmit={handleSubmit} action=''>
 									<div
 										className={cx(
 											styles['form-group'],
@@ -51,6 +57,8 @@ function Login(props) {
 											type='text'
 											name='email'
 											placeholder='Email'
+											onChange={(e) => setEmail(e.target.value)}
+											value={email}
 											className={cx(
 												styles['my-1'],
 												['py-1'],
@@ -62,6 +70,8 @@ function Login(props) {
 											type='password'
 											name='password'
 											placeholder='Password'
+											onChange={(e) => setPassword(e.target.value)}
+											value={password}
 											className={cx(
 												styles['my-1'],
 												['py-1'],
@@ -78,9 +88,11 @@ function Login(props) {
 										</label>
 									</div>
 									<div className='row my-3'>
-										<button className='btn btn-primary' onClick={handleLogin}>
-											Login
-										</button>
+										{!isPending && (
+											<button className='btn btn-primary'>Login</button>
+										)}
+										{isPending && <button className='btn'>Loading</button>}
+										{error && <small>{error}</small>}
 									</div>
 									<div>
 										<small className='muted'>

@@ -1,16 +1,15 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { useLogout } from '../../hooks/useLogout';
+import { useAuthContext } from '../../hooks/useAuthContext';
+import { signInWithGoogle } from '../../firebase/config';
 
 import './Header.scss';
 
-function Header({ setLoggedIn }) {
+function Header() {
 	const [dropdown, setDropdown] = useState(false);
-	const navigate = useNavigate();
-	const handelLogout = () => {
-		localStorage.removeItem('loggedIn');
-		setLoggedIn(false);
-		navigate('/');
-	};
+	const { logout } = useLogout();
+	const { user } = useAuthContext();
 
 	function handleClick() {
 		setDropdown((dropdown) => !dropdown);
@@ -22,38 +21,39 @@ function Header({ setLoggedIn }) {
 			<div className='header flex'>
 				<div onClick={handleClick} className='header-right flex-item'>
 					<img src='/imgs/dr_cornali-headshot.jpg' alt='' />
-					<h3 className='user sm'>Dr. Cornali</h3>
+					<img src={localStorage.getItem('profilePic')} />
+					<h3 className='user sm'>Hello, {user.displayName}</h3>
 					<div className='dropdown'>
 						<div role='menu' className={`dropdown-menu card ${dropdownShow}`}>
 							<ul>
 								<li className='dropdown-header'>Welcome!</li>
 								<li className='dropdown-item'>
 									<Link to='/MyProfile'>
-										<i class='fa-solid fa-user'></i> My Profile
+										<i className='fa-solid fa-user'></i> My Profile
 									</Link>
 								</li>
 								<li className='dropdown-item'>
 									<Link to='/Appointments'>
-										<i class='fa-solid fa-calendar-days'></i>Calendar
+										<i className='fa-solid fa-calendar-days'></i>Calendar
 									</Link>
 								</li>
 								<li className='dropdown-item'>
 									{' '}
 									<Link to='/MyProfile'>
-										<i class='fa-solid fa-gear'></i>Settings
+										<i className='fa-solid fa-gear'></i>Settings
 									</Link>
 								</li>
 
 								<li className='dropdown-item'>
 									{' '}
 									<Link to='/Contact'>
-										<i class='fa-solid fa-life-ring'></i>Support
+										<i className='fa-solid fa-life-ring'></i>Support
 									</Link>
 								</li>
 								<li className='dropdown-item-divider'></li>
 								<li className='dropdown-item'>
-									<Link to='/#' onClick={handelLogout}>
-										<i class='fa-solid fa-person-running'></i>Logout
+									<Link to='/#' onClick={logout} href='#'>
+										<i className='fa-solid fa-person-running'></i>Logout
 									</Link>
 								</li>
 							</ul>

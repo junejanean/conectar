@@ -1,7 +1,7 @@
-@import '../../styles/_variables.scss';
+@use '../../styles/_variables';
 
 header {
-  color: $lightgrey;
+  color: variables.$lightgrey;
   height: 55px;
 }
 .header.flex {
@@ -14,14 +14,14 @@ header {
   flex-flow: row wrap;
   padding: 15px;
   &:hover {
-    color: $opacity-hover;
+    color: variables.$opacity-hover;
   }
 }
 .header h2.flex-item {
   flex-grow: 30;
 }
 .header img {
-  background-color: $rose;
+  background-color: variables.$rose;
   width:38px;
   height: 38px;
   border-radius:50%;
@@ -32,6 +32,7 @@ header {
   align-content: flex-end;
   margin-right: 10px;
   align-items: center;
+  cursor: pointer;
 }
 .header-right p {
   margin-right: 1rem;
@@ -43,13 +44,13 @@ header h3 {
   font-weight: 300;
   padding-top: 5px;
   cursor: pointer;
-  color: $lightgrey;
+  color: variables.$lightgrey;
   &:hover {
-    color: $opacity-hover;
+    color: variables.$opacity-hover;
   }
 }
 header h3:hover, header-right p:hover, header img:hover {
-  color: $opacity-hover;
+  color: variables.$opacity-hover;
 }
 header .dropdown {
   top: 25px;

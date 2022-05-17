@@ -1,4 +1,4 @@
-@import '../../styles/global.scss';
+@use '../../styles/variables';
 
 .card.details {
   height: auto;
@@ -13,17 +13,17 @@
 .patient-list .patient, .patient-profile .card, input {
   width: 100%;
   padding: 10px;
-  background-color: $lightgrey;
+  background-color: variables.$lightgrey;
   box-shadow: none;
   margin: 10px 0;
   align-items: center;
 }
 
 .patient-list .patient .selected {
-  background: $darkblue;
+  background: variables.$darkblue;
 }
 .patient-profile  {
-  color: $text;
+  color: variables.$text;
 }
 .patient-profile h6 {
   text-transform: uppercase;
@@ -40,7 +40,7 @@
 }
 .patient-profile .patient-header {
   font-weight: 200;
-  background-color: $white;
+  background-color: variables.$white;
   font-size: .8rem;
 }
 .patient-header {
@@ -48,8 +48,8 @@
  
 }
 .patient-header .card {
-  background-color: $lightgrey;
-  color: $text;
+  background-color: variables.$lightgrey;
+  color: variables.$text;
   justify-content: space-between;
 }
 .patient-header .profile, .patient-header .appts {
@@ -58,8 +58,8 @@
 }
 
 .patient-header .non-active {
-  background-color: $white;
-  border: 2px solid $lightgrey;
+  background-color: variables.$white;
+  border: 2px solid variables.$lightgrey;
 }
 .patient-header .profile {
   margin-right: 1rem;
@@ -81,7 +81,7 @@
   display: flex;
 }
 .card.profile-details .detail {
-  background-color: $white;
+  background-color: variables.$white;
   align-items: flex-start; 
   flex-direction: column;
   flex-wrap: wrap;
@@ -113,7 +113,7 @@
   width: 54%;
 }
 .card.profile-details p span {
-  color: $text;
+  color: variables.$text;
 }
 
 .card.profile-history {

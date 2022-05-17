@@ -1,8 +1,8 @@
-@import '../../../styles/_variables.scss';
+@use '../../../styles/_variables';
 
 
 body {
-  background: linear-gradient(87deg, $brightblue, $deepblue);
+  background: linear-gradient(87deg, variables.$brightblue, variables.$deepblue);
 }
 .main-content.landing {
   position: relative;
@@ -36,16 +36,16 @@ body {
 .showcase .btn {
   font-weight: 100;
 }
-footer nav li a:hover {
-  color: hsla(0,0%,100%,.65);
-}
-footer {
-  position: relative;
-  bottom: 0;
-  padding: 1rem;
-  font-weight: 100;
-}
-footer .copyright,
-footer a {
-  color: white;
-}
+// footer nav li a:hover {
+//   color: hsla(0,0%,100%,.65);
+// }
+// footer {
+//   position: relative;
+//   bottom: 0;
+//   padding: 1rem;
+//   font-weight: 100;
+// }
+// footer .copyright,
+// footer a {
+//   color: white;
+// }

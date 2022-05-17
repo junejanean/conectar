@@ -1,4 +1,4 @@
-@import '../../styles/_variables.scss';
+@use '../../styles/_variables';
 
 .dashboard {
   margin: 20px;
@@ -39,7 +39,7 @@
 
 }
 .dashboard h1 {
-  color: $white;
+  color: variables.$white;
 }
 .dashboard .appointments {
   width: 100%;
@@ -49,15 +49,15 @@
   width: 100%;
   flex-direction: row;
   padding: 10px;
-  background-color: $lightgrey;
+  background-color: variables.$lightgrey;
   box-shadow: none;
   margin: 10px 0;
   align-items: center;
 }
 .dashboard .appointments .appt-header {
-  background-color: $darkblue;
+  background-color: variables.$darkblue;
   font-weight: 200;
-  color: $lightgrey;
+  color: variables.$lightgrey;
   font-size: .8rem;
 }
 .dashboard .appointments .appt-header p {
@@ -94,13 +94,13 @@
   padding: 0;
 }
 .dashboard .single-appt p.status {
-  color: $green;
+  color: variables.$green;
   font-size: .6rem;
   max-width: 65px;
 }
 .dashboard .single-appt p.appt-type {
   font-size: .8rem;
-  color: $bluegrey;
+  color: variables.$bluegrey;
 }
 .dashboard .single-appt i.fa-chevron-down {
   cursor: pointer;

@@ -1,9 +1,11 @@
 import React from 'react';
 import './Landing.scss';
+import Navbar from '../Navbar/Navbar';
 
 function Landing() {
 	return (
 		<>
+			<Navbar />
 			<div className='main-content landing'>
 				<div className='container'>
 					<div className='showcase grid'>
@@ -19,7 +21,7 @@ function Landing() {
 						</section>
 						<section className='p-1'>
 							<img
-								src='/imgs/conectar_logo_icon_white.png'
+								src='/imgs/logo/conectar_logo_icon_white.png'
 								alt=''
 								className='hero'
 							/>

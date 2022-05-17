@@ -6,7 +6,7 @@ import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 import cx from 'classnames';
 
-function MyProfile({ setLoggedIn }) {
+function MyProfile() {
 	const [tabs] = useState(['User Information', 'Contact Information']);
 	const [currentTab, setCurrentTab] = useState('User Information');
 
@@ -19,7 +19,7 @@ function MyProfile({ setLoggedIn }) {
 					<Sidebar />
 
 					<div className='main-container'>
-						<Header setLoggedIn={setLoggedIn} />
+						<Header />
 						<div className='dashboard'>
 							<h1>My Profile</h1>
 
@@ -53,7 +53,7 @@ function MyProfile({ setLoggedIn }) {
 															<h3 className='user sm'>Dr. Cornali</h3>
 
 															<img src='/imgs/dr_cornali-headshot.jpg' alt='' />
-															<i class='fa fa-pen-to-square'></i>
+															<i className='fa fa-pen-to-square'></i>
 														</div>
 														<form action=''>
 															<div
@@ -118,10 +118,10 @@ function MyProfile({ setLoggedIn }) {
 																className={cx(styles['notifications-wrapper'])}
 															>
 																<div className={cx([styles.notifications])}>
-																	<label class='switch' for='checkbox1'>
+																	<label className='switch' for='checkbox1'>
 																		<input type='checkbox' id='checkbox1' />
 																		<div
-																			class={cx(
+																			className={cx(
 																				[styles.slider],
 																				['slider'],
 																				['round']
@@ -141,10 +141,10 @@ function MyProfile({ setLoggedIn }) {
 																</div>
 
 																<div className={cx([styles.notifications])}>
-																	<label class='switch' for='checkbox2'>
+																	<label className='switch' for='checkbox2'>
 																		<input type='checkbox' id='checkbox2' />
 																		<div
-																			class={cx(
+																			className={cx(
 																				[styles.slider],
 																				['slider'],
 																				['round']

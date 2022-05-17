@@ -1,4 +1,4 @@
-@import './_variables.scss';
+@use './_variables';
 
 .stats .row {
   justify-content: space-between;
@@ -18,14 +18,14 @@
 
 .stats h3 {
   font-weight: 200;
-  color: $darkblue;
+  color: variables.$darkblue;
 }
 .stats .card .icon {
   width:2.5rem;
   height:2.5rem;
   box-shadow: 0 0 2rem 0 rgba(136,152,170,.15);
   border-radius: 50%;
-  color: $white;
+  color: variables.$white;
   padding: 18px;
   text-align: center;
   display: inline-flex;
@@ -38,16 +38,16 @@
     font-size: 1.25rem;
 }
 .stats p span {
-  color: $green;
+  color: variables.$green;
   margin-right: .5rem;
 }
 
 .stat-red {
-  background: $red-grad;
+  background: variables.$red-grad;
 }
 .stat-purple {
-  background: $purple-grad;
+  background: variables.$purple-grad;
 }
 .stat-green {
-  background: $green-grad;
+  background: variables.$green-grad;
 }

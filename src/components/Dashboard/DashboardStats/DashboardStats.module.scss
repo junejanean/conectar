@@ -1,4 +1,4 @@
-@import '../../../styles/_variables.scss';
+@use '../../../styles/_variables';
 
 .row {
   justify-content: space-between;
@@ -10,7 +10,7 @@
   right:20px;
 }
 h5 {
-  color: $muted;
+  color: variables.$muted;
 }
 
 .card .icon {
@@ -18,7 +18,7 @@ h5 {
   height:2.5rem;
   box-shadow: 0 0 2rem 0 rgba(136,152,170,.15);
   border-radius: 50%;
-  color: $white;
+  color: variables.$white;
   padding: 18px;
   text-align: center;
   display: inline-flex;
@@ -27,13 +27,13 @@ h5 {
   
 }
 .card.stats-red .icon  {
-  background: $red-grad;
+  background: variables.$red-grad;
 }
 .card.stats-purple .icon  {
-  background: $purple-grad;
+  background: variables.$purple-grad;
 }
 .card.stats-green .icon  {
-  background: $green-grad;
+  background: variables.$green-grad;
 }
 
 
@@ -41,6 +41,6 @@ h5 {
     font-size: 1.25rem;
 }
 p span {
-  color: $green;
+  color: variables.$green;
   margin-right: .5rem;
 }

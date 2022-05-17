@@ -7,7 +7,7 @@ import DashboardCalendar from './DashboardCalendar/DashboardCalendar';
 import DashboardStats from './DashboardStats/DashboardStats';
 import { data } from './data';
 
-function Dashboard({ setLoggedIn }) {
+function Dashboard() {
 	const [apptData, setApptData] = useState(data);
 
 	const handleToggle = (index) => {
@@ -28,7 +28,7 @@ function Dashboard({ setLoggedIn }) {
 				<div className='main-content'>
 					<Sidebar />
 					<div className='main-container'>
-						<Header setLoggedIn={setLoggedIn} />
+						<Header />
 						<div className='dashboard'>
 							<h1>Dashboard</h1>
 
@@ -40,11 +40,11 @@ function Dashboard({ setLoggedIn }) {
 										<DashboardCalendar />
 										<div className='card add-appt'>
 											<h4>Book An Appointment</h4>
-											<i class='fa-solid fa-plus'></i>
+											<i className='fa-solid fa-plus'></i>
 										</div>
 										<div className='card add-appt blocked'>
 											<h4>Block Time</h4>
-											<i class='fa-solid fa-ban'></i>
+											<i className='fa-solid fa-ban'></i>
 										</div>
 									</div>
 								</div>
@@ -71,7 +71,7 @@ function Dashboard({ setLoggedIn }) {
 														<p className='status'>{status}</p>
 														<p className='appt-type'>{apptType}</p>
 														<i
-															class={`fa-solid p-1 ${
+															className={`fa-solid p-1 ${
 																toggle ? 'fa-chevron-down' : 'fa-chevron-up'
 															}`}
 															onClick={() => handleToggle(i)}

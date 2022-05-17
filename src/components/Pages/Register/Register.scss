@@ -14,7 +14,7 @@
   flex-direction: column;
   flex-wrap: wrap;
   text-align: center;
-  color: $bluegrey;
+  color: variables.$bluegrey;
   background-color: #f8f9fe;
 }  
 .auth-icons img {
@@ -43,7 +43,7 @@
   font-style: italic;
 }
 .password-strength span {
-  color: $green;
+  color: variables.$green;
   font-weight: bold;
 }
 .privacy, .password-strength {

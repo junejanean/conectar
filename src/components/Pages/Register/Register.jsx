@@ -1,11 +1,28 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useRegister } from '../../../hooks/useRegister';
+import { signInWithGoogle } from '../../../firebase/config';
+import { useNavigate } from 'react-router-dom';
+import Navbar from '../Navbar/Navbar';
 import styles from './Register.module.scss';
 import cx from 'classnames';
 import { Link } from 'react-router-dom';
 
 function Register() {
+	const [displayName, setDisplayName] = useState('');
+	const [email, setEmail] = useState('');
+	const [password, setPassword] = useState('');
+	const { register, isPending, error } = useRegister();
+	let navigate = useNavigate();
+
+	const handleSubmit = (e) => {
+		e.preventDefault();
+		register(displayName, email, password);
+		navigate('/');
+	};
+
 	return (
 		<>
+			<Navbar />
 			<div className='main-content landing'>
 				<div className={cx(styles.container, ['container'], ['register'])}>
 					<div className='row my-2'>
@@ -13,14 +30,11 @@ function Register() {
 							<div className='card-header'>
 								<small className='muted'>Sign up with</small>
 								<div className='auth-icons row my-2'>
-									<Link to='/Register' className='btn btn-nuetral'>
-										<img
-											src='https://demos.creative-tim.com/argon-dashboard-pro-react/static/media/github.6c955556.svg'
-											alt=''
-										/>
-										Github
-									</Link>
-									<Link to='/Register' className='btn btn-nuetral'>
+									<Link
+										onClick={signInWithGoogle}
+										to='/Register'
+										className='btn btn-nuetral'
+									>
 										<img
 											src='	https://demos.creative-tim.com/argon-dashboard-pro-react/static/media/google.eae9aa93.svg'
 											alt=''
@@ -31,7 +45,7 @@ function Register() {
 							</div>
 							<div className='card-body'>
 								<small className='muted'>Or sign up with credentials</small>
-								<form action=''>
+								<form onSubmit={handleSubmit} action=''>
 									<div
 										className={cx(
 											styles['form-group'],
@@ -41,8 +55,10 @@ function Register() {
 									>
 										<input
 											type='text'
-											name='name'
+											name='displayName'
 											placeholder='Name'
+											onChange={(e) => setDisplayName(e.target.value)}
+											value={displayName}
 											className={cx(
 												styles['my-1'],
 												['py-1'],
@@ -54,6 +70,8 @@ function Register() {
 											type='text'
 											name='email'
 											placeholder='Email'
+											onChange={(e) => setEmail(e.target.value)}
+											value={email}
 											className={cx(
 												styles['my-1'],
 												['py-1'],
@@ -65,6 +83,8 @@ function Register() {
 											type='password'
 											name='password'
 											placeholder='Password'
+											onChange={(e) => setPassword(e.target.value)}
+											value={password}
 											className={cx(
 												styles['my-1'],
 												['py-1'],
@@ -88,7 +108,17 @@ function Register() {
 										</label>
 									</div>
 									<div className='row my-3'>
-										<button className='btn btn-primary'>Create Account</button>
+										{!isPending && (
+											<button className='btn btn-primary'>
+												Create Account
+											</button>
+										)}
+										{isPending && (
+											<button className='btn' disabled>
+												loading
+											</button>
+										)}
+										{error && <p>{error}</p>}
 									</div>
 								</form>
 							</div>

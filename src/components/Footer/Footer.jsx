@@ -5,8 +5,8 @@ import './Footer.scss';
 function Footer() {
 	return (
 		<>
-			<footer class='footer py-1'>
-				<div class='container flex'>
+			<footer className='footer py-1'>
+				<div className='container flex'>
 					<div className='copyright'>
 						<p>Conectar | Copyright &copy; 2022</p>
 					</div>

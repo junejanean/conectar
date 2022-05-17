@@ -1,8 +1,7 @@
-@import '../../styles/_variables.scss';
-
+@use '../../styles/_variables';
 
 .fc .fc-button-primary {
-  background-color: $darkblue;
+  background-color: variables.$darkblue;
 }
 .fc .fc-button-primary:hover {
   opacity: .9;

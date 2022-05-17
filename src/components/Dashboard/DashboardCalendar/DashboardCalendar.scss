@@ -1,4 +1,4 @@
-@import '../../../styles/_variables.scss';
+@use '../../../styles/_variables';
 
 
 .p-calendar {
@@ -66,7 +66,7 @@ width: auto;
   left: 0;
   padding: 0.5rem;
   background-color: #fff;
-  color: $bluegrey;
+  color: variables.$bluegrey;
   border: 1px solid #ced4da;
   border-radius: 6px;
 }
@@ -83,7 +83,7 @@ width: auto;
   align-items: center;
   justify-content: space-between;
   padding: 0.5rem;
-  color: $muted;
+  color: variables.$muted;
   font-weight: 600;
   margin: 0;
   border-bottom: 1px solid #dee2e6;
@@ -94,7 +94,7 @@ width: auto;
 
 .p-datepicker-header .p-datepicker-title {
   margin: 0 auto;
-  color: $muted;
+  color: variables.$muted;
 }
 
 .p-datepicker-prev,
@@ -114,7 +114,7 @@ width: auto;
 }
 .p-datepicker table th {
   padding: 0.2rem;
-  color: $muted;
+  color: variables.$muted;
 }
 .p-datepicker table th > span {
   width: 2rem;

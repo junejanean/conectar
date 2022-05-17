@@ -1,19 +1,19 @@
 import React from 'react';
+import { useLogout } from '../../../hooks/useLogout';
+import { useAuthContext } from '../../../hooks/useAuthContext';
 import { Link } from 'react-router-dom';
 import './Navbar.scss';
 
-function Navbar({ loggedIn, setLoggedIn }) {
-	const handelLogout = () => {
-		localStorage.removeItem('loggedIn');
-		setLoggedIn(false);
-	};
+function Navbar() {
+	const { logout } = useLogout();
+	const { user } = useAuthContext();
 
 	return (
 		<>
 			<div className='navbar-horizontal p-2'>
 				<div className='container flex'>
 					<Link to='/'>
-						<img src='/imgs/conectar_logo_head_white.png' alt='' />
+						<img src='/imgs/logo/conectar_logo_head_white.png' alt='' />
 					</Link>
 					<nav>
 						<ul>
@@ -26,19 +26,8 @@ function Navbar({ loggedIn, setLoggedIn }) {
 							<li>
 								<Link to='/Contact'>Contact</Link>
 							</li>
-							{loggedIn && (
-								<>
-									<li>
-										<Link to='/Dashboard'>Dashboard</Link>
-									</li>
-									<li>
-										<Link to='/#' onClick={handelLogout}>
-											Logout
-										</Link>
-									</li>
-								</>
-							)}
-							{!loggedIn && (
+
+							{!user && (
 								<>
 									<li>
 										<Link to='/Register'>Register</Link>
@@ -48,20 +37,34 @@ function Navbar({ loggedIn, setLoggedIn }) {
 									</li>
 								</>
 							)}
+
+							{user && (
+								<>
+									<li>
+										<Link to='/Dashboard'>Dashboard</Link>
+									</li>
+									<li>
+										<Link to='/#' onClick={logout}>
+											Logout
+										</Link>
+									</li>
+									<li>Hello {user.displayName}!</li>
+								</>
+							)}
 						</ul>
 					</nav>
-					<div class='social'>
+					<div className='social'>
 						<Link to='/'>
-							<i class='fab fa-github'></i>
+							<i className='fab fa-github'></i>
 						</Link>
 						<Link to='/'>
-							<i class='fab fa-twitter'></i>
+							<i className='fab fa-twitter'></i>
 						</Link>
 						<Link to='/'>
-							<i class='fab fa-facebook'></i>
+							<i className='fab fa-facebook'></i>
 						</Link>
 						<Link to='/'>
-							<i class='fab fa-instagram'></i>
+							<i className='fab fa-instagram'></i>
 						</Link>
 					</div>
 				</div>

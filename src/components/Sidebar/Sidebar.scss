@@ -1,4 +1,4 @@
-@import '../../styles/_variables.scss';
+@use '../../styles/_variables';
 
 
 .sidebar {
@@ -8,7 +8,7 @@
   box-shadow: 0 0 2rem 0
   rgba(136, 152, 170, 15%);
   z-index: 100;
-  background-color: $white;
+  background-color: variables.$white;
 }
 .sidebar .logo {
   margin: 20px;

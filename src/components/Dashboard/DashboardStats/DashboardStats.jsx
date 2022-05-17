@@ -12,12 +12,12 @@ function DashboardStats() {
 						<h3 className='md'>174</h3>
 					</div>
 					<div className={cx(styles.icon, ['col-auto'])}>
-						<i class='fa fa-users'></i>
+						<i className='fa fa-users'></i>
 					</div>
 					<div className='col-auto'>
 						<p>
 							<span>
-								<i class='fa fa-arrow-up'></i> 3.48%
+								<i className='fa fa-arrow-up'></i> 3.48%
 							</span>
 							Since last month
 						</p>
@@ -29,12 +29,12 @@ function DashboardStats() {
 						<h3 className='md'>67</h3>
 					</div>
 					<div className={cx(styles.icon, ['col-auto'])}>
-						<i class='fa-solid fa-calendar-check'></i>
+						<i className='fa-solid fa-calendar-check'></i>
 					</div>
 					<div className='col-auto'>
 						<p>
 							<span>
-								<i class='fa fa-arrow-up'></i> 3.48%
+								<i className='fa fa-arrow-up'></i> 3.48%
 							</span>{' '}
 							Since last month
 						</p>
@@ -46,12 +46,12 @@ function DashboardStats() {
 						<h3 className='md'>$12,345</h3>
 					</div>
 					<div className={cx(styles.icon, ['col-auto'])}>
-						<i class='fa fa-coins'></i>
+						<i className='fa fa-coins'></i>
 					</div>
 					<div className='col-auto'>
 						<p>
 							<span>
-								<i class='fa fa-arrow-up'></i> 3.48%
+								<i className='fa fa-arrow-up'></i> 3.48%
 							</span>{' '}
 							Since last month
 						</p>

@@ -11,7 +11,7 @@ import styles from './Appointments.module.scss';
 import './Appointments.scss';
 import cx from 'classnames';
 
-function Appointments({ setLoggedIn }) {
+function Appointments() {
 	const handleDateSelect = (selectInfo) => {
 		let title = prompt('Please enter a new title for your event');
 		let calendarApi = selectInfo.view.calendar;
@@ -53,7 +53,7 @@ function Appointments({ setLoggedIn }) {
 				<div className='main-content'>
 					<Sidebar />
 					<div className='main-container'>
-						<Header setLoggedIn={setLoggedIn} />
+						<Header />
 						<div className='container'>
 							<div className='dashboard'>
 								<h1>Appointments</h1>

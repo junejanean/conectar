@@ -1,35 +1,35 @@
-@import '../../../styles/_variables.scss';
+@use '../../../styles/_variables';
 
 .row {
   gap: 0;
 }
 .card.stats-red {
-  background: $red-grad;
+  background: variables.$red-grad;
 }
 .card.stats-purple  {
-  background: $purple-grad;
+  background: variables.$purple-grad;
 }
 .card.stats-green  {
-  background: $green-grad;
+  background: variables.$green-grad;
 }
 .card, .stats h5, .card h3, .card p span {
-  color: $white;
+  color: variables.$white;
 }
 .card p {
-  color: $lightblue;
+  color: variables.$lightblue;
 }
 
 .card .icon {
-  color: $white;
+  color: variables.$white;
 }
 .card.stats-red .icon, .card.stats-purple .icon, .card.stats-green .icon  {
-  background: $white;
+  background: variables.$white;
 }
 
 .stats h3 {
-  color: $white;
+  color: variables.$white;
 }
 
 .icon i {
-  color: $darkblue;
+  color: variables.$darkblue;
 }

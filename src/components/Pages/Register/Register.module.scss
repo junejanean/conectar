@@ -1,4 +1,4 @@
-@import '../../../styles/_variables.scss';
+@use '../../../styles/variables';
 
 .main-content.landing .container {
   max-width: 600px;
@@ -12,8 +12,8 @@
 .card {
   flex-wrap: wrap;
   text-align: center;
-  color: $bluegrey;
-  background-color: $bluewhite;
+  color: variables.$bluegrey;
+  background-color: variables.$bluewhite;
   max-width: 378px;
 }
 .form-group {
@@ -39,7 +39,7 @@ form input[type='checkbox'] {
   font-style: italic;
 }
 .password-strength span {
-  color: $green;
+  color: variables.$green;
   font-weight: bold;
 }
 .privacy, .password-strength {
