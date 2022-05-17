@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { projectAuth } from '../firebase/config';
 import { useAuthContext } from './useAuthContext';
 
@@ -15,7 +16,8 @@ export const useRegister = () => {
 
 		try {
 			//register user
-			const res = await projectAuth.createUserWithEmailAndPassword(
+			const res = await createUserWithEmailAndPassword(
+				projectAuth,
 				email,
 				password
 			);

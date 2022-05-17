@@ -1,10 +1,12 @@
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/firestore';
-//import { getAuth } from 'firebase/compat/auth';
+import 'firebase/compat/auth';
+import { getFirestore } from 'firebase/firestore/lite';
+import { GoogleAuthProvider, signInWithPopup, getAuth } from 'firebase/auth';
 
-import { initializeApp } from 'firebase/app';
-import { getAuth, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
-import { getFirestore } from 'firebase/firestore';
+// import { initializeApp } from 'firebase/app';
+// import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
+// import { getFirestore } from 'firebase/firestore';
 
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
@@ -18,13 +20,13 @@ const firebaseConfig = {
 };
 
 // init firebase
-firebase.initializeApp(firebaseConfig); /// v8
-const app = initializeApp(firebaseConfig); //firebase v9
+// firebase.initializeApp(firebaseConfig); /// v8
+const app = firebase.initializeApp(firebaseConfig); //firebase v9
 
 // init service
 // const projectFirestore = firebase.firestore(); v8
 const projectFirestore = getFirestore(app); // v9
-//const projectAuth = firebase.auth(); // v8;
+// const projectAuth = firebase.auth(); // v8;
 const projectAuth = getAuth(); // v9
 
 const provider = new GoogleAuthProvider();

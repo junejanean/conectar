@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import { projectAuth } from '../firebase/config';
+import { signInWithEmailAndPassword } from 'firebase/auth';
 import { useAuthContext } from './useAuthContext';
+import { removeUserLocalStorageItem } from '../utilities';
 
 export const useLogin = () => {
 	const [isCancelled, setIsCancelled] = useState(false);
@@ -12,9 +14,18 @@ export const useLogin = () => {
 		setError(null);
 		setIsPending(true);
 
+		// reset local storage items
+
+		removeUserLocalStorageItem();
+
 		try {
 			// login
-			const res = await projectAuth.signInWithEmailAndPassword(email, password);
+			const res = await signInWithEmailAndPassword(
+				projectAuth,
+				email,
+				password
+			);
+			console.log(res.user);
 
 			// dispatch login action
 			dispatch({ type: 'LOGIN', payload: res.user });
@@ -25,6 +36,7 @@ export const useLogin = () => {
 				setError(null);
 			}
 		} catch (err) {
+			console.log(err);
 			if (!isCancelled) {
 				setError(err.message);
 				setIsPending(false);
