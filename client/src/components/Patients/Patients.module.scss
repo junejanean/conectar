@@ -1,0 +1,76 @@
+@use '../../styles/variables.scss';
+
+.container {
+  
+}
+.container .card {
+  max-height:700px;
+  overflow-y: scroll;
+}
+
+.card.patient.scroll, .card.details.scroll {
+  max-height: 965px;
+  overflow-y: scroll;
+}
+.details-wrapper {
+  max-height: 965px;
+
+  flex-direction: column;
+  background-color: white;
+  border-radius: 0.375rem;
+}
+.patient-list .patient, .patient-profile .card, input {
+  max-height: 50px;
+  flex-direction: row;
+  box-shadow: none;
+  margin: 10px 0;
+  align-items: center;
+  cursor: pointer;
+  background: variables.$lightgrey;
+  }
+
+  .patient-profile .profile-detail p {
+    font-size: .8rem;
+  }
+
+  .patient-list .patient.card.selected {
+    background: variables.$darkblue;
+  }
+  .default {
+    margin-bottom: 1.5rem;
+    align-content: center;
+   }
+h3 {display: flex;}
+h3 label {
+  font-size: .8rem;
+    font-weight: 400;
+}
+h3  input  {
+  background-color: variables.$white;
+  padding: .3rem;
+  margin: 0.4rem 0;
+  width: 75%;
+}
+
+.patient.search {
+  background-color: variables.$white;
+  border: 2px solid variables.$lightgrey;
+  &:hover {
+    background-color:variables.$white;
+  }
+}
+.patient-list input {
+  background: variables.$white;
+}
+input {
+  border: none;
+  outline: none;
+  background-color: variables.$white;
+  padding: 0;
+  margin: 0;
+  color: variables.$muted;
+  &:hover {
+    background-color:variables.$white;
+  }
+}
+
