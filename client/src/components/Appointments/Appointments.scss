@@ -13,3 +13,19 @@
 .fc .fc-bg-event {
   background-color: rgba(235, 101, 75, 0.3);
 }
+
+.fc .fc-daygrid-event-harness {
+  overflow: hidden;
+}
+.react-datepicker-wrapper {
+  width: 70%;
+}
+.react-datepicker-wrapper input {
+  width: 90%;
+}
+.react-datetime-picker {
+  margin-top: 10px;
+}
+.react-datetime-picker__inputGroup__input {
+  height: auto;
+}

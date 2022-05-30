@@ -10,8 +10,6 @@ function Header() {
 	const { logout } = useLogout();
 	const { user } = useAuthContext();
 
-	console.log(user);
-
 	function handleClick() {
 		setDropdown((dropdown) => !dropdown);
 	}

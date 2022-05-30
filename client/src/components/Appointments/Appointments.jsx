@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import Header from '../Header/Header';
 import Sidebar from '../Sidebar/Sidebar';
 import FullCalendar from '@fullcalendar/react';
@@ -7,27 +7,65 @@ import interactionPlugin from '@fullcalendar/interaction';
 import timeGridPlugin from '@fullcalendar/timegrid';
 // import { INITIAL_EVENTS, createEventId } from './event-utils';
 // import ReactTooltip from 'react-tooltip';
-import styles from './Appointments.module.scss';
+import 'react-datepicker/dist/react-datepicker.css';
 import './Appointments.scss';
+import styles from './Appointments.module.scss';
 import cx from 'classnames';
+import NewAppointment from './NewAppointment.jsx/NewAppointment';
+import axios from 'axios';
+import config from '../../config';
+import { useAuthContext } from '../../hooks/useAuthContext';
+import oneSignalNotification from './oneSignal';
 
 function Appointments() {
-	const handleDateSelect = (selectInfo) => {
-		let title = prompt('Please enter a new title for your event');
-		let calendarApi = selectInfo.view.calendar;
+	const [showModal, setShowModal] = useState(false);
+	const [date, setDate] = useState();
+	const [time, setTime] = useState();
+	const [notes, setNotes] = useState();
+	const [duration, setDuration] = useState();
+	const [patient, setPatient] = useState();
+	const [selectPatients, setSelectPatients] = useState([]);
+	const [type, setType] = useState('');
+	const calendarRef = useRef(null);
+	const { user } = useAuthContext();
 
-		calendarApi.unselect(); // clear date selection
+	useEffect(() => {
+		(async () => {
+			if (user) {
+				const selectPatients = await axios.get(
+					`${config.URL}/doctors/${user.uid}/patients`
+				);
+				setSelectPatients(selectPatients.data);
 
-		if (title) {
-			calendarApi.addEvent({
-				// id: createEventId(),
-				title,
-				start: selectInfo.startStr,
-				end: selectInfo.endStr,
-				allDay: selectInfo.allDay,
-			});
-		}
+				console.log(selectPatients.data);
+			}
+		})();
+	}, [user]);
+
+	const openModal = () => {
+		setShowModal(true);
 	};
+
+	const onEventAdded = (e) => {
+		let calendarApi = calendarRef.current.getApi();
+		calendarApi.addEvent(e);
+	};
+
+	// create new Appointment
+	const handleSubmit = async (e) => {
+		e.preventDefault();
+		const onSubmit = await axios.post(config.URL + '/appointments', {
+			date: new Date(date),
+			type,
+			patient,
+			notes,
+		});
+		console.log(onSubmit);
+		// oneSignalNotification();
+
+		setShowModal(false);
+	};
+
 	const handleEventClick = (clickInfo) => {
 		if (
 			window.confirm(
@@ -72,16 +110,17 @@ function Appointments() {
 										selectable={true}
 										selectMirror={true}
 										dayMaxEvents={true}
-										select={handleDateSelect}
 										eventClick={handleEventClick}
+										dateClick={setShowModal}
 										customButtons={{
 											myCustomButton: {
 												text: 'Add Event',
 												click: function () {
-													prompt('Please enter a new title for your event');
+													openModal();
 												},
 											},
 										}}
+										ref={calendarRef}
 										// eventDidMount={handleTooltip}
 
 										events={[
@@ -181,18 +220,35 @@ function Appointments() {
             */
 										]}
 									/>
-									<div className='instructions'>
-										<h2>Instructions</h2>
-										<ul>
-											<li>
-												Select dates and you will be prompted to create a new
-												event
-											</li>
-											<li>Drag, drop, and resize events</li>
-											<li>Click an event to delete it</li>
-										</ul>
-									</div>
+									{showModal ? (
+										<NewAppointment
+											setShowModal={setShowModal}
+											handleSubmit={handleSubmit}
+											onEventAdded={(e) => onEventAdded(e)}
+											date={date}
+											setDate={setDate}
+											type={type}
+											setType={setType}
+											notes={notes}
+											setNotes={setNotes}
+											patient={patient}
+											setPatient={setPatient}
+											selectPatients={selectPatients}
+											setSelectPatients={setSelectPatients}
+										/>
+									) : null}
 								</div>
+								{/* <div className='instructions'>
+									<h2>Instructions</h2>
+									<ul>
+										<li>
+											Select dates and you will be prompted to create a new
+											event
+										</li>
+										<li>Drag, drop, and resize events</li>
+										<li>Click an event to delete it</li>
+									</ul>
+								</div> */}
 							</div>
 						</div>
 					</div>

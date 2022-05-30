@@ -73,4 +73,26 @@ input {
     background-color:variables.$white;
   }
 }
+.form-group.update {
+  margin: 0 .2rem .2rem;
+  justify-content: end;
+  width: 90%;
+}
+.history {
+  width: 100%;
+}
+
+.history .form-group.update {
+  margin: .2rem;
+  justify-content: end;
+  width: 100%;
+}
+.history textarea {
+  justify-content: end;
+  width: 100%;
+  min-height: 200px;
+  font-family: Open Sans, sans-serif;
+  margin: 1rem 0;
+
+}
 

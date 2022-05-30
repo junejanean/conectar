@@ -1,8 +1,12 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+ObjectId = mongoose.Schema.Types.ObjectId;
 
 const patientSchema = new Schema(
 	{
+		uid: {
+			type: String,
+		},
 		firstName: {
 			type: String,
 			required: true,
@@ -67,6 +71,10 @@ const patientSchema = new Schema(
 		},
 		healthcareExpenses: {
 			type: Number,
+		},
+		appointment: {
+			type: ObjectId,
+			ref: 'Appointment',
 		},
 	},
 	{ timestamps: true }

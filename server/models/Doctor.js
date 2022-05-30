@@ -1,15 +1,19 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+ObjectId = mongoose.Schema.Types.ObjectId;
 
 const doctorSchema = new Schema(
 	{
+		uid: {
+			type: String,
+		},
 		firstName: {
 			String,
-			required: true,
+			// required: true,
 		},
 		lastName: {
 			String,
-			required: true,
+			// required: true,
 		},
 		prefix: {
 			String,
@@ -47,6 +51,16 @@ const doctorSchema = new Schema(
 		latitude: {
 			String,
 		},
+		appointment: {
+			type: ObjectId,
+			ref: 'Appointment',
+		},
+		patients: [
+			{
+				type: ObjectId,
+				ref: 'Patient',
+			},
+		],
 	},
 	{ timestamps: true }
 );

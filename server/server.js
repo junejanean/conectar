@@ -4,8 +4,12 @@ const dotenv = require('dotenv');
 const mongoose = require('mongoose');
 const connectDb = require('./db');
 const patientsRoute = require('./routes/patients');
+const doctorsRoute = require('./routes/doctors');
+const appointmentsRoute = require('./routes/appointments');
 const path = require('path');
 const cors = require('cors');
+const Doctor = require('./models/Doctor');
+const Patient = require('./models/Patient');
 
 // init app & middleware
 dotenv.config();
@@ -15,8 +19,20 @@ app.use(cors());
 // db connection
 let db = connectDb();
 
+app.get('/whoami/:uid', async function (req, res) {
+	const doctor = await Doctor.findOne({ uid: req.params.uid });
+	const patient = await Patient.findOne({ uid: req.params.uid });
+
+	console.log(1, req.params);
+	return res
+		.status(200)
+		.json({ doctor, patient, isDoctor: !!doctor, isPatient: !!patient });
+});
+
 // routes
+app.use('/doctors', doctorsRoute);
 app.use('/patients', patientsRoute);
+app.use('/appointments', appointmentsRoute);
 
 mongoose.connection.once('open', () => {
 	app.listen(5000, () => {

@@ -36,7 +36,21 @@ router.get('/', async (req, res) => {
 // 	} catch (error) {
 // 		res.status(500).send(error);
 // 	}
-// });
+// });w
+
+router.get('/:uid/patients', async (req, res) => {
+	// try {s
+	const doctorsPatients = await Doctor.findOne({
+		uid: req.params.uid,
+	}).populate('patients');
+	try {
+		res.status(200).json(doctorsPatients.patients);
+	} catch (err) {
+		res
+			.status(500)
+			.json({ error: 'Could not retrieve pateints for this doctor' });
+	}
+});
 
 router.patch('/:id', async (req, res) => {
 	// try {

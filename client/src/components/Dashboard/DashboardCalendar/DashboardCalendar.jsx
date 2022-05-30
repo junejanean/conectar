@@ -9,8 +9,6 @@ function DashboardCalendar() {
 
 	return (
 		<div>
-			{/* <Calendar inline></Calendar> */}
-
 			<Calendar
 				inline
 				readOnlyInput

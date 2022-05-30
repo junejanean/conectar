@@ -163,9 +163,25 @@
   }
 }
 
-  
-  /* Forms */
+  /* Modal */
+  #portal .modal-container {
+    z-index: 99;
+    position: fixed;
+    top: 0;
+    left: 220px;
+    bottom: 0;
+    right: 0;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.7);
+  }
+  #portal .modal {
+    animation: animate 0.3s;
+  }
 
+    /* Forms */
 
   input:-webkit-autofill,
   input:-webkit-autofill:hover, 
@@ -203,12 +219,12 @@ form {
   margin-top: 1rem;
 }
 .form-group.update {
-  margin: 0 0 .2rem;
+  margin:0;
   justify-content: end;
-  width: 90%;
-
+  width: 100%;
 }
-.form-group.update input {
+
+.form-group.update input, .form-group.update select {
   padding: 0.2rem 0.35rem ;
   line-height: 1.2;
   width:100%;
