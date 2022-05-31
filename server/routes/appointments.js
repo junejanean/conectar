@@ -46,7 +46,8 @@ router.post('/', async (req, res) => {
 	console.log(newAppointment);
 
 	try {
-		await newAppointment.save().populate('doctor');
+		await newAppointment.save();
+		//.populate('doctors')
 
 		res.status(201).json(newAppointment);
 	} catch (err) {

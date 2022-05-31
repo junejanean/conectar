@@ -6,7 +6,7 @@ import Footer from '../Footer/Footer';
 import DashboardCalendar from './DashboardCalendar/DashboardCalendar';
 import DashboardStats from './DashboardStats/DashboardStats';
 import axios from 'axios';
-import { format, parseISO } from 'date-fns';
+import { format, parseISO, isValid } from 'date-fns';
 import { Link } from 'react-router-dom';
 
 function Dashboard() {
@@ -77,8 +77,11 @@ function Dashboard() {
 											const { date, doctor, patient, type, notes } = d;
 
 											const parsedDate = parseISO(date);
-											const time = format(parsedDate, 'K:mm a');
 
+											const time = isValid(parsedDate)
+												? format(parsedDate, 'K:mm a')
+												: null;
+											console.log(time);
 											const appointmentIsBlocked = type === 'blocked';
 
 											const appointmentHasBeenSelected =
@@ -95,7 +98,7 @@ function Dashboard() {
 											return (
 												<div className='card-wrapper' key={i}>
 													<div className='card single-appt'>
-														<p className='time'>{time}</p>
+														<p className='time'>{time || 'N/A'}</p>
 														{patient && (
 															<p className='name'>
 																{patient.firstName} {patient.lastName}

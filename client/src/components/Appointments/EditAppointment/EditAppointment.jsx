@@ -4,11 +4,9 @@ import styles from '../Appointments.module.scss';
 import DateTimePicker from 'react-datepicker';
 import cx from 'classnames';
 
-import { setDate } from 'date-fns';
-
-function NewAppointment(props) {
+function EditAppointment(props) {
 	const {
-		setShowModal,
+		setShowEditModal,
 		onEventAdded,
 		handleUpdate,
 		handleSubmit,
@@ -22,6 +20,8 @@ function NewAppointment(props) {
 		setType,
 		notes,
 		setNotes,
+		calEvent,
+		setCalEvent,
 	} = props;
 	const [error, setError] = useState(null);
 	// setHours(setMinutes(new Date(), 30), 16)
@@ -30,7 +30,7 @@ function NewAppointment(props) {
 	const modalRef = useRef();
 	const closeModal = (e) => {
 		if (e.target === modalRef.current) {
-			setShowModal(false);
+			setShowEditModal(false);
 		}
 	};
 
@@ -42,9 +42,9 @@ function NewAppointment(props) {
 				onClick={closeModal}
 			>
 				<div className='card profile-details'>
-					<button onClick={() => setShowModal(false)}>X</button>
+					<button onClick={() => setShowEditModal(false)}>X</button>
 					<div className='card-body'>
-						<h2>Add New Appointment</h2>
+						<h2>Edit Appointment</h2>
 						<form
 							className={cx(
 								styles['form-group'],
@@ -63,8 +63,8 @@ function NewAppointment(props) {
 										value={patient}
 										onChange={(e) => setPatient(e.target.value)}
 									>
-										<option value='' selected disabled hidden>
-											Select Patient
+										<option value={calEvent.title} selected>
+											{calEvent.title}
 										</option>
 										{selectPatients.map((p) => (
 											<option key={p._id} value={p._id}>
@@ -80,8 +80,8 @@ function NewAppointment(props) {
 										value={type}
 										onChange={(e) => setType(e.target.value)}
 									>
-										<option value='' selected disabled hidden>
-											Select Appointment Type
+										<option value={calEvent.description}>
+											{calEvent.description}
 										</option>
 										<option value='Consult'>Consult</option>
 										<option value='New Patient'>New Patient</option>
@@ -91,8 +91,9 @@ function NewAppointment(props) {
 								</div>
 								<div className={cx(styles.row, ['row'])}>
 									<label htmlFor=''>Date & Time</label>
+
 									<DateTimePicker
-										selected={date}
+										selected={calEvent.start}
 										onChange={(date) => setDate(date)}
 										showTimeSelect
 										dateFormat='MMMM d, yyyy h:mm aa'
@@ -102,7 +103,7 @@ function NewAppointment(props) {
 									<label htmlFor=''>Notes</label>
 									<textarea
 										onChange={(e) => setNotes(e.target.value)}
-										value={notes}
+										value={calEvent.notes}
 										name='notes'
 										id=''
 										cols='30'
@@ -117,7 +118,7 @@ function NewAppointment(props) {
 										className='btn'
 										onEventAdded={(e) => onEventAdded(e)}
 									>
-										Add Apppointment
+										Edit Apppointment
 									</button>
 									{error && <p>{error}</p>}
 								</div>
@@ -131,4 +132,4 @@ function NewAppointment(props) {
 	);
 }
 
-export default NewAppointment;
+export default EditAppointment;

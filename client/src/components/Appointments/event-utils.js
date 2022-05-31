@@ -17,3 +17,16 @@ export const INITIAL_EVENTS = [
 export function createEventId() {
 	return String(eventGuid++);
 }
+
+// {
+// 	title: 'Vacation',
+
+// 	start: '2022-05-04',
+// 	end: '2022-05-09',
+// 	display: 'background',
+// },
+// {
+// 	title: 'Elizabeth Ward consult',
+// 	start: '2022-05-11T8:30:00',
+// 	end: '2022-05-11T9:30:00',
+// }

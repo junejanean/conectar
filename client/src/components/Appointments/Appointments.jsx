@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useCallback } from 'react';
 import Header from '../Header/Header';
 import Sidebar from '../Sidebar/Sidebar';
 import FullCalendar from '@fullcalendar/react';
@@ -6,28 +6,42 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import timeGridPlugin from '@fullcalendar/timegrid';
 // import { INITIAL_EVENTS, createEventId } from './event-utils';
-// import ReactTooltip from 'react-tooltip';
 import 'react-datepicker/dist/react-datepicker.css';
 import './Appointments.scss';
 import styles from './Appointments.module.scss';
 import cx from 'classnames';
 import NewAppointment from './NewAppointment.jsx/NewAppointment';
+import EditAppointment from './EditAppointment/EditAppointment';
 import axios from 'axios';
 import config from '../../config';
 import { useAuthContext } from '../../hooks/useAuthContext';
 import oneSignalNotification from './oneSignal';
+import { format, parseISO } from 'date-fns';
 
 function Appointments() {
+	console.log(1);
+	const [apptDetails, setApptDetails] = useState();
 	const [showModal, setShowModal] = useState(false);
+	const [showEditModal, setShowEditModal] = useState(false);
 	const [date, setDate] = useState();
 	const [time, setTime] = useState();
 	const [notes, setNotes] = useState();
 	const [duration, setDuration] = useState();
 	const [patient, setPatient] = useState();
-	const [selectPatients, setSelectPatients] = useState([]);
 	const [type, setType] = useState('');
+	const [calEvent, setCalEvent] = useState({
+		start: date,
+		title: patient,
+		description: type,
+		notes: notes,
+	});
+	const [selectPatients, setSelectPatients] = useState([]);
 	const calendarRef = useRef(null);
 	const { user } = useAuthContext();
+
+	const fetchApptCallback = useCallback(() => {
+		fetchAppointments();
+	}, []);
 
 	useEffect(() => {
 		(async () => {
@@ -36,24 +50,53 @@ function Appointments() {
 					`${config.URL}/doctors/${user.uid}/patients`
 				);
 				setSelectPatients(selectPatients.data);
-
-				console.log(selectPatients.data);
+				// console.log(selectPatients.data);
 			}
+
+			fetchApptCallback();
 		})();
-	}, [user]);
+	}, [user, fetchApptCallback]);
+
+	const fetchAppointments = async (appts) => {
+		const res = await axios.get('http://localhost:5000/appointments');
+
+		appts = res.data;
+		const apptDB = appts.map((d) => {
+			return {
+				description: d.type,
+				start: d.date,
+				title: d.patient.lastName,
+				notes: d.notes,
+			};
+		});
+		// console.log(apptDB);
+		console.count();
+		setApptDetails(apptDB);
+	};
 
 	const openModal = () => {
 		setShowModal(true);
 	};
 
+	// add new appointment to the Calendar
 	const onEventAdded = (e) => {
+		console.log('event working');
 		let calendarApi = calendarRef.current.getApi();
+		console.log(calendarApi);
 		calendarApi.addEvent(e);
 	};
 
-	// create new Appointment
+	// submit form to create new Appointment
 	const handleSubmit = async (e) => {
 		e.preventDefault();
+
+		// fullcalandar event
+		onEventAdded({
+			description: type,
+			start: date,
+			title: patient.lastName,
+		});
+
 		const onSubmit = await axios.post(config.URL + '/appointments', {
 			date: new Date(date),
 			type,
@@ -61,29 +104,35 @@ function Appointments() {
 			notes,
 		});
 		console.log(onSubmit);
+
 		// oneSignalNotification();
 
 		setShowModal(false);
 	};
 
-	const handleEventClick = (clickInfo) => {
-		if (
-			window.confirm(
-				`Are you sure you want to delete the event '${clickInfo.event.title}'`
-			)
-		) {
-			clickInfo.event.remove();
-		}
-	};
-
-	// const handleTooltip = (info) => {
-	// 	const tooltip = new Tooltip(info.el, {
-	// 		title: info.event.extendedProps.description,
-	// 		placement: 'top',
-	// 		trigger: 'hover',
-	// 		container: 'body',
-	// 	});
+	// calEvent = {
+	// 	description: type,
+	// 	start: date,
+	// 	title: patient.lastName,
 	// };
+
+	const handleEventClick = (selectInfo) => {
+		let calendarApi = selectInfo.view.calendar;
+		let apptData = {
+			start: selectInfo.event.start,
+			title: selectInfo.event.title,
+			description: selectInfo.event.extendedProps.description,
+			notes: selectInfo.event.extendedProps.notes,
+		};
+
+		console.log(selectInfo);
+		console.log(selectInfo.event.title);
+		console.log(selectInfo.event.start);
+		console.log(selectInfo.event.extendedProps.description);
+		console.log(selectInfo.event.extendedProps.notes);
+		setCalEvent(apptData);
+		setShowEditModal(true);
+	};
 
 	return (
 		<div>
@@ -100,18 +149,16 @@ function Appointments() {
 										plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
 										initialView='dayGridMonth'
 										headerToolbar={{
-											left: 'prev,next today myCustomButton',
+											left: 'prev,next myCustomButton',
 											center: 'title',
 											right: 'dayGridMonth,timeGridWeek,timeGridDay',
 										}}
-										// dateClick={handleDateClick}
 										eventContent={renderEventContent}
-										editable={true}
+										editable={false}
 										selectable={true}
 										selectMirror={true}
 										dayMaxEvents={true}
 										eventClick={handleEventClick}
-										dateClick={setShowModal}
 										customButtons={{
 											myCustomButton: {
 												text: 'Add Event',
@@ -121,105 +168,11 @@ function Appointments() {
 											},
 										}}
 										ref={calendarRef}
-										// eventDidMount={handleTooltip}
-
-										events={[
-											{
-												title: 'Conference',
-												description: 'description for Long Event',
-												start: '2022-05-23',
-												end: '2022-05-26',
-											},
-											{
-												title: 'Vacation',
-
-												start: '2022-05-04',
-												end: '2022-05-09',
-												display: 'background',
-											},
-											{
-												title: 'Elizabeth Ward consult',
-												start: '2022-05-11T8:30:00',
-												end: '2022-05-11T9:30:00',
-											},
-											{ title: 'Mary Ellis consult', date: '2022-05-03' },
-											{ title: 'T Longnameman consult', date: '2022-05-11' },
-											{
-												title: 'Rebecca Krasne',
-												start: '2022-05-16T09:30:00',
-												end: '2022-05-16T10:30:00',
-											},
-											{
-												title: 'Jeff Clarke',
-												start: '2022-05-16T11:30:00',
-												end: '2022-05-16T12:30:00',
-											},
-											{
-												title: 'Barbara Diaz',
-												start: '2022-05-16T13:30:00',
-												end: '2022-05-16T14:30:00',
-											},
-											{
-												title: 'Ray Dalio',
-												start: '2022-05-16T15:30:00',
-												end: '2022-05-16T16:30:00',
-											},
-											{
-												title: 'Laura Diaz',
-												start: '2022-05-19T08:30:00',
-												end: '2022-05-19T09:30:00',
-											},
-											{
-												title: 'Rebecca Krasne',
-												start: '2022-05-27T09:30:00',
-												end: '2022-05-27T10:30:00',
-											},
-											{
-												title: 'Jeff Clarke',
-												start: '2022-05-27T11:30:00',
-												end: '2022-05-27T12:30:00',
-											},
-											{
-												title: 'Barbara Diaz',
-												start: '2022-05-27T13:30:00',
-												end: '2022-05-27T14:30:00',
-											},
-											{
-												title: 'Ray Dalio',
-												start: '2022-05-27T15:30:00',
-												end: '2022-05-27T16:30:00',
-											},
-											{
-												title: 'Howard Stern',
-												start: '2022-05-27T14:30:00',
-												end: '2022-05-27T15:30:00',
-												extendedProps: {
-													department: 'Consult',
-												},
-												description: 'New patient consultation',
-											},
-											{ title: 'Langley consult', date: '2022-05-12' },
-											{
-												title: 'Howie Long',
-												start: '2022-05-26T10:30:00',
-												end: '2022-05-26T11:30:00',
-												backgroundColor: '#525f7f',
-												extendedProps: {
-													department: 'Consult',
-												},
-												description: 'New patient consultation',
-											},
-											{ title: 'L Violet', date: '2022-05-18' },
-											{ title: 'H Sanchez', date: '2022-05-10' },
-
-											// eventsSet={handleEvents} // called after events are initialized/added/changed/removed
-											/* you can update a remote database when these fire:
-            eventAdd={function(){}}
-            eventChange={function(){}}
-            eventRemove={function(){}}
-            */
-										]}
+										eventAdd={(e) => handleSubmit(e)}
+										// eventDidMount={}
+										events={apptDetails}
 									/>
+
 									{showModal ? (
 										<NewAppointment
 											setShowModal={setShowModal}
@@ -237,18 +190,27 @@ function Appointments() {
 											setSelectPatients={setSelectPatients}
 										/>
 									) : null}
+
+									{showEditModal ? (
+										<EditAppointment
+											setShowEditModal={setShowEditModal}
+											handleSubmit={handleSubmit}
+											onEventAdded={(e) => onEventAdded(e)}
+											date={date}
+											setDate={setDate}
+											type={type}
+											setType={setType}
+											notes={notes}
+											setNotes={setNotes}
+											patient={patient}
+											setPatient={setPatient}
+											selectPatients={selectPatients}
+											setSelectPatients={setSelectPatients}
+											calEvent={calEvent}
+											setCalEvent={setCalEvent}
+										/>
+									) : null}
 								</div>
-								{/* <div className='instructions'>
-									<h2>Instructions</h2>
-									<ul>
-										<li>
-											Select dates and you will be prompted to create a new
-											event
-										</li>
-										<li>Drag, drop, and resize events</li>
-										<li>Click an event to delete it</li>
-									</ul>
-								</div> */}
 							</div>
 						</div>
 					</div>
@@ -261,7 +223,7 @@ function Appointments() {
 function renderEventContent(eventInfo) {
 	return (
 		<>
-			<b>{eventInfo.timeText} &nbsp;</b>
+			<span>{eventInfo.timeText} &nbsp;</span>
 			<span>{eventInfo.event.title}</span>
 		</>
 	);

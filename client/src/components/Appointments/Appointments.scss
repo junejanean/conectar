@@ -8,14 +8,28 @@
 }
 .fc .fc-daygrid-day.fc-day-today {
   background-color:rgb(143, 223, 130, 0.3);
-
 }
 .fc .fc-bg-event {
   background-color: rgba(235, 101, 75, 0.3);
 }
+.fc-direction-ltr .fc-daygrid-event.fc-event-end {
+  background-color:#3788d8;
+  color: variables.$lightgrey;
+  font-weight: 100;
+}
+.fc .fc-daygrid-day-number {
+  padding: 4px 4px 0 4px;
+}
+.fc-daygrid-event-dot {
+  display: none;
+}
+.fc-daygrid-dot-event {
+  padding: 2px 0 2px 2px;
+}
 
 .fc .fc-daygrid-event-harness {
   overflow: hidden;
+  line-height: 1.2;
 }
 .react-datepicker-wrapper {
   width: 70%;
