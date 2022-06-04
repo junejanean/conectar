@@ -25,19 +25,6 @@ router.get('/', async (req, res) => {
 
 // UPDATE
 
-// router.put('/:id', async (req, res) => {
-// 	try {
-// 		const patchPatient = await Patient.findByIdAndUpdate(
-// 			request.params.id,
-// 			request.body
-// 		);
-// 		await Patient.save();
-// 		res.send(patchPatient);
-// 	} catch (error) {
-// 		res.status(500).send(error);
-// 	}
-// });
-
 router.put('/:id', async (req, res) => {
 	// try {
 	const patient = await Patient.findById(req.params.body);

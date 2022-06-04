@@ -7,9 +7,8 @@ import cx from 'classnames';
 function EditAppointment(props) {
 	const {
 		setShowEditModal,
-		onEventAdded,
+		onEventChange,
 		handleUpdate,
-		handleSubmit,
 		selectPatients,
 		setSelectPatients,
 		date,
@@ -52,7 +51,7 @@ function EditAppointment(props) {
 								['update'],
 								styles['update']
 							)}
-							onSubmit={handleSubmit}
+							onSubmit={handleUpdate}
 							action=''
 						>
 							<div>
@@ -91,7 +90,6 @@ function EditAppointment(props) {
 								</div>
 								<div className={cx(styles.row, ['row'])}>
 									<label htmlFor=''>Date & Time</label>
-
 									<DateTimePicker
 										selected={calEvent.start}
 										onChange={(date) => setDate(date)}
@@ -116,7 +114,7 @@ function EditAppointment(props) {
 									<button
 										type='submit'
 										className='btn'
-										onEventAdded={(e) => onEventAdded(e)}
+										onEventChange={(e) => onEventChange(e)}
 									>
 										Edit Apppointment
 									</button>

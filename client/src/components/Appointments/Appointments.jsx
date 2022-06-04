@@ -17,9 +17,9 @@ import config from '../../config';
 import { useAuthContext } from '../../hooks/useAuthContext';
 import oneSignalNotification from './oneSignal';
 import { format, parseISO } from 'date-fns';
+import id from 'date-fns/esm/locale/id/index.js';
 
 function Appointments() {
-	console.log(1);
 	const [apptDetails, setApptDetails] = useState();
 	const [showModal, setShowModal] = useState(false);
 	const [showEditModal, setShowEditModal] = useState(false);
@@ -57,12 +57,14 @@ function Appointments() {
 		})();
 	}, [user, fetchApptCallback]);
 
+	// fetch all appointments
 	const fetchAppointments = async (appts) => {
 		const res = await axios.get('http://localhost:5000/appointments');
 
 		appts = res.data;
 		const apptDB = appts.map((d) => {
 			return {
+				id: d._id,
 				description: d.type,
 				start: d.date,
 				title: d.patient.lastName,
@@ -70,7 +72,6 @@ function Appointments() {
 			};
 		});
 		// console.log(apptDB);
-		console.count();
 		setApptDetails(apptDB);
 	};
 
@@ -78,7 +79,7 @@ function Appointments() {
 		setShowModal(true);
 	};
 
-	// add new appointment to the Calendar
+	// add new appointment to the FullCalendar
 	const onEventAdded = (e) => {
 		console.log('event working');
 		let calendarApi = calendarRef.current.getApi();
@@ -86,36 +87,35 @@ function Appointments() {
 		calendarApi.addEvent(e);
 	};
 
-	// submit form to create new Appointment
+	// submit form to CREATE new Appointment in MongoDB
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 
-		// fullcalandar event
-		onEventAdded({
-			description: type,
-			start: date,
-			title: patient.lastName,
-		});
-
-		const onSubmit = await axios.post(config.URL + '/appointments', {
+		const response = await axios.post(config.URL + '/appointments', {
 			date: new Date(date),
 			type,
 			patient,
 			notes,
 		});
-		console.log(onSubmit);
+
+		console.log(response);
+
+		// fullcalandar event
+		onEventAdded({
+			id: response.data._id,
+			type: response.data.type,
+			description: response.data.notes,
+			start: response.data.date,
+			title: `${response.data.patient.firstName} ${response.data.patient.lastName}`,
+		});
 
 		// oneSignalNotification();
 
 		setShowModal(false);
+		// window.location.reload();
 	};
 
-	// calEvent = {
-	// 	description: type,
-	// 	start: date,
-	// 	title: patient.lastName,
-	// };
-
+	// click event for clicking on indivual appointment
 	const handleEventClick = (selectInfo) => {
 		let calendarApi = selectInfo.view.calendar;
 		let apptData = {
@@ -123,15 +123,39 @@ function Appointments() {
 			title: selectInfo.event.title,
 			description: selectInfo.event.extendedProps.description,
 			notes: selectInfo.event.extendedProps.notes,
+			id: selectInfo.event.id,
 		};
-
-		console.log(selectInfo);
-		console.log(selectInfo.event.title);
-		console.log(selectInfo.event.start);
-		console.log(selectInfo.event.extendedProps.description);
-		console.log(selectInfo.event.extendedProps.notes);
 		setCalEvent(apptData);
 		setShowEditModal(true);
+	};
+
+	// submit form to UPDATE new Appointment in MongoDB
+	const handleUpdate = async (e) => {
+		e.preventDefault();
+
+		//fullcalandar event
+		// onEventChange({
+		// 	description: type,
+		// 	start: date,
+		// 	title: patient.lastName,
+		// });
+
+		const onSubmit = await axios.put(
+			config.URL + '/appointments/' + calEvent.id,
+			{
+				id: id,
+				date: date,
+				type,
+				patient,
+				notes,
+			}
+		);
+		console.log(onSubmit);
+
+		// oneSignalNotification();
+
+		setShowEditModal(false);
+		// window.location.reload();
 	};
 
 	return (
@@ -194,8 +218,8 @@ function Appointments() {
 									{showEditModal ? (
 										<EditAppointment
 											setShowEditModal={setShowEditModal}
-											handleSubmit={handleSubmit}
-											onEventAdded={(e) => onEventAdded(e)}
+											handleUpdate={handleUpdate}
+											// onEventChange={(e) => onEventChange(e)}
 											date={date}
 											setDate={setDate}
 											type={type}
