@@ -1,10 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styles from '../Patients.module.scss';
 import cx from 'classnames';
 
 function AddPatient(props) {
-	const { showModal, setShowModal, handleUpdate } = props;
-	const [error, setError] = useState(null);
+	const { setShowModal, handleUpdate } = props;
 
 	const handleSubmit = async (e) => {};
 
@@ -51,7 +50,6 @@ function AddPatient(props) {
 							<button onClick={handleUpdate} className='btn'>
 								Update
 							</button>
-							{error && <p>{error}</p>}
 						</div>
 					</form>
 				</div>

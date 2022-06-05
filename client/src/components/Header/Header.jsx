@@ -24,7 +24,7 @@ function Header() {
 					{profilePic && (
 						<img alt='' src={localStorage.getItem('profilePic')} />
 					)}
-					{!profilePic && <img alt='' src={'/imgs/dr_cornali-headshot.jpg'} />}
+					{!profilePic && <img alt='' src={'/imgs/steven_kauffmann.jpg'} />}
 					<h3 className='user sm'>Hello, {user.displayName}</h3>
 					<div className='dropdown'>
 						<div role='menu' className={`dropdown-menu card ${dropdownShow}`}>

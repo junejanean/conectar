@@ -1,19 +1,15 @@
-import React, { useState, useRef } from 'react';
+import React, { useRef } from 'react';
 import ReactDom from 'react-dom';
 import styles from '../Appointments.module.scss';
 import DateTimePicker from 'react-datepicker';
 import cx from 'classnames';
 
-import { setDate } from 'date-fns';
-
 function NewAppointment(props) {
 	const {
 		setShowModal,
 		onEventAdded,
-		handleUpdate,
 		handleSubmit,
 		selectPatients,
-		setSelectPatients,
 		date,
 		setDate,
 		patient,
@@ -23,8 +19,6 @@ function NewAppointment(props) {
 		notes,
 		setNotes,
 	} = props;
-	const [error, setError] = useState(null);
-	// setHours(setMinutes(new Date(), 30), 16)
 
 	// close the modal when clicking outside the modal.
 	const modalRef = useRef();
@@ -80,7 +74,7 @@ function NewAppointment(props) {
 										value={type}
 										onChange={(e) => setType(e.target.value)}
 									>
-										<option value='' selected disabled hidden>
+										<option value='' defaultValue disabled hidden>
 											Select Appointment Type
 										</option>
 										<option value='Consult'>Consult</option>
@@ -119,7 +113,6 @@ function NewAppointment(props) {
 									>
 										Add Apppointment
 									</button>
-									{error && <p>{error}</p>}
 								</div>
 							</div>
 						</form>

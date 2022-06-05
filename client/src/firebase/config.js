@@ -2,12 +2,7 @@ import firebase from 'firebase/compat/app';
 import 'firebase/compat/firestore';
 import 'firebase/compat/auth';
 import { getFirestore } from 'firebase/firestore/lite';
-import {
-	GoogleAuthProvider,
-	signInWithPopup,
-	getAuth,
-	onAuthStateChanged,
-} from 'firebase/auth';
+import { GoogleAuthProvider, signInWithPopup, getAuth } from 'firebase/auth';
 
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import styles from './MyProfile.module.scss';
 import Sidebar from '../Sidebar/Sidebar';
 import MyProfileStats from './MyProfileStats/MyProfileStats';

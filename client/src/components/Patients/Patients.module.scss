@@ -9,7 +9,7 @@
 }
 
 .card.patient.scroll, .card.details.scroll {
-  max-height: 942px;
+  max-height: 930px;
   overflow-y: scroll;
 }
 .details-wrapper {
@@ -52,15 +52,20 @@ h3  input  {
   width: 75%;
 }
 
+.patient-list .patient:hover {
+  background-color:rgba(0, 0, 0, 0.03);
+}
+.patient-list input {
+  background: variables.$white;
+  padding-left: 0;
+}
+
 .patient.search {
   background-color: variables.$white;
   border: 2px solid variables.$lightgrey;
   &:hover {
     background-color:variables.$white;
   }
-}
-.patient-list input {
-  background: variables.$white;
 }
 input {
   border: none;

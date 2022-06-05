@@ -190,7 +190,7 @@
       -webkit-box-shadow: 0 0 0 30px white inset,
       0 1px 3px rgb(50 50 93 / 15%), 0 1px 0 rgb(0 0 0 / 2%) !important;
   }
-form {
+form, .form {
   display: block;
   font-size: .875rem;
   transition: all .15s ease-in-out;
@@ -228,7 +228,7 @@ form {
 .form-group.update input, .form-group.update select {
   padding: 0.2rem 0.35rem ;
   line-height: 1.2;
-  width:100%;
+  width:96%;
   background-color: $white;
   margin: 0;
   border-radius: 0;
@@ -361,6 +361,9 @@ input:checked + .slider:before {
   }
   .default {
     height: 300px; 
+   }
+   #clear-btn {
+     cursor: pointer;
    }
 
   

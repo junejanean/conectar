@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
-import { useLogin, user } from '../../../hooks/useLogin';
-import { onAuthStateChanged } from 'firebase/auth';
+import { useLogin } from '../../../hooks/useLogin';
 import Navbar from '../Navbar/Navbar';
 import { Link, useNavigate } from 'react-router-dom';
-import { projectAuth, signInWithGoogle } from '../../../firebase/config';
+import { signInWithGoogle } from '../../../firebase/config';
 
 // styles
 import styles from '../Register/Register.module.scss';

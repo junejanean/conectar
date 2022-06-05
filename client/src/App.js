@@ -13,7 +13,6 @@ import Login from './components/Pages/Login/Login';
 import Register from './components/Pages/Register/Register';
 import About from './components/Pages/About/About';
 import Contact from './components/Pages/Contact/Contact';
-import Footer from './components/Footer/Footer';
 import Appointments from './components/Appointments/Appointments';
 import Patients from './components/Patients/Patients';
 import MyProfile from './components/MyProfile/MyProfile';

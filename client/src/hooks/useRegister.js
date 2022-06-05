@@ -2,12 +2,10 @@ import { useState, useEffect } from 'react';
 import {
 	createUserWithEmailAndPassword,
 	updateProfile,
-	signInAnonymously,
 	getAuth,
 } from 'firebase/auth';
 import { projectAuth } from '../firebase/config';
 import { useAuthContext } from './useAuthContext';
-import { renderScrollShim } from '@fullcalendar/react';
 
 export const useRegister = () => {
 	const [isCancelled, setIsCancelled] = useState(false);

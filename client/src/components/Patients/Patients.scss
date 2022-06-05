@@ -29,9 +29,7 @@
   text-transform: uppercase;
   
 }
-.patient-list .patient:hover {
-  background-color:rgba(0, 0, 0, 0.03);
-}
+
 .patient-profile .title {
   display: flex;
   justify-content: space-between;
@@ -87,7 +85,7 @@
   flex-wrap: wrap;
 }
 .card.profile-details .detail.basic {
-  height: 135px;
+  height: 130px;
   padding-bottom: 0;
 }
 .card.profile-details .detail-wrapper {

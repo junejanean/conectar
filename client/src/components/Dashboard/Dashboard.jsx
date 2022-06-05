@@ -8,6 +8,7 @@ import DashboardStats from './DashboardStats/DashboardStats';
 import axios from 'axios';
 import { format, parseISO, isValid } from 'date-fns';
 import { Link } from 'react-router-dom';
+import config from '../../config';
 
 function Dashboard() {
 	const [apptDetails, setApptDetails] = useState();
@@ -25,7 +26,7 @@ function Dashboard() {
 	};
 
 	const fetchAppointments = async () => {
-		const res = await axios.get('http://localhost:5000/appointments');
+		const res = await axios.get(config.URL + '/appointments');
 		setApptDetails(res.data);
 
 		console.log('response via db: ', res.data);
@@ -74,7 +75,7 @@ function Dashboard() {
 											</p>
 										</div>
 										{apptDetails?.map((d, i) => {
-											const { date, doctor, patient, type, notes } = d;
+											const { date, patient, type, notes } = d;
 
 											const parsedDate = parseISO(date);
 

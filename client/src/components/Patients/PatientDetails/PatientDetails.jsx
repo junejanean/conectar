@@ -13,8 +13,6 @@ function PatientDetails(props) {
 		setUpdateModeNotes,
 		handleClose,
 		handleUpdate,
-		error,
-		setError,
 		setFirstName,
 		setLastName,
 		setBirthDate,
@@ -303,7 +301,6 @@ function PatientDetails(props) {
 													<button onClick={handleUpdate} className='btn'>
 														Update
 													</button>
-													{error && <p>{error}</p>}
 												</div>
 											) : (
 												<></>
@@ -350,7 +347,6 @@ function PatientDetails(props) {
 														<button onClick={handleUpdate} className='btn'>
 															Update
 														</button>
-														{error && <p>{error}</p>}
 													</div>
 												) : (
 													<></>
@@ -396,7 +392,6 @@ function PatientDetails(props) {
 														<button onClick={handleUpdate} className='btn'>
 															Update
 														</button>
-														{error && <p>{error}</p>}
 													</div>
 												) : (
 													<></>

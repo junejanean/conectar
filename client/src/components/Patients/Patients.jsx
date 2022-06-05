@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './Patients.module.scss';
 import './Patients.scss';
 import Sidebar from '../Sidebar/Sidebar';
@@ -15,11 +15,9 @@ function Patients() {
 	const [currentPatient, setCurrentPatient] = useState({});
 	const [hideDefaultMessage, setHideDefaultMessage] = useState(false);
 	const [showModal, setShowModal] = useState(false);
-	const [addPatient, setAddPatient] = useState(false);
 	const [updateMode, setUpdateMode] = useState(false);
 	const [updateModeHistory, setUpdateModeHistory] = useState(false);
 	const [updateModeNotes, setUpdateModeNotes] = useState(false);
-	const [error, setError] = useState(null);
 
 	const [firstName, setFirstName] = useState(currentPatient.firstName);
 	const [lastName, setLastName] = useState(currentPatient.lastName);
@@ -38,9 +36,9 @@ function Patients() {
 
 	const url = process.env.REACT_APP_API_URL;
 
-	const openModal = () => {
-		setShowModal(true);
-	};
+	// const openModal = () => {
+	// 	setShowModal(true);
+	// };
 
 	const handleClose = () => {
 		setUpdateMode(false);
@@ -65,7 +63,7 @@ function Patients() {
 
 	const handleUpdate = async () => {
 		try {
-			const res = await axios.put(url + '/patients' + currentPatient._id, {
+			const res = await axios.put(url + '/patients/' + currentPatient._id, {
 				firstName,
 				lastName,
 				birthDate,
@@ -94,9 +92,7 @@ function Patients() {
 			setUpdateMode(false);
 			setUpdateModeHistory(false);
 			setUpdateModeNotes(false);
-			setError(null);
 		} catch (error) {
-			setError();
 			throw new Error('Could not update the patient');
 		}
 	};
@@ -167,11 +163,11 @@ function Patients() {
 														To view a patient, click on the list to the left.
 													</h2>
 												</div>
-												<div className='row'>
+												{/* <div className='row'>
 													<button className='btn' onClick={openModal}>
 														Add New Patient
 													</button>
-												</div>
+												</div> */}
 												{showModal ? (
 													<AddPatient setShowModal={setShowModal} />
 												) : null}

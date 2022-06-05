@@ -18,16 +18,15 @@ function MyProfileDetails(props) {
 	const [gender, setGender] = useState();
 	const [specialty, setSpecialty] = useState();
 	const [email, setEmail] = useState();
-	const [password, setPassword] = useState();
-	const [about, setAbout] = useState();
-	const [emailNotifications, setEmailNotifications] = useState();
-	const [systemNotifications, setSystemNotifications] = useState();
 	const [address1, setAddress1] = useState();
-	const [address2, setAddress2] = useState();
+	const [address2, setAddress2] = useState(userProfile.address2);
 	const [city, setCity] = useState();
 	const [state, setState] = useState();
 	const [zip, setZip] = useState();
 	const [phone, setPhone] = useState();
+	// const [about, setAbout] = useState();
+	// const [emailNotifications, setEmailNotifications] = useState();
+	// const [systemNotifications, setSystemNotifications] = useState();
 
 	const fetchUser = async () => {
 		if (user) {
@@ -57,16 +56,7 @@ function MyProfileDetails(props) {
 				suffix,
 				title,
 			});
-			// setCurrentUser(res.data);
-			// setUserProfile((prevState) =>
-			// 	prevState.map((userProfile) => {
-			// 		if (userProfile._id === res.data._id) {
-			// 			return res.data;
-			// 		}
 
-			// 		return userProfile;
-			// 	})
-			// );
 			alert('Patient updated!');
 			//setUserProfile(res.data.doctor);
 
@@ -97,8 +87,8 @@ function MyProfileDetails(props) {
 			setState(userProfile.state);
 			setZip(userProfile.zip);
 			setSpecialty(userProfile.specialty);
-			setEmailNotifications(userProfile.emailNotifications);
-			setSystemNotifications(userProfile.systemNotifications);
+			// setEmailNotifications(userProfile.emailNotifications);
+			// setSystemNotifications(userProfile.systemNotifications);
 		}
 	}, [userProfile]);
 
@@ -127,10 +117,14 @@ function MyProfileDetails(props) {
 									<div className={cx(['card-body'], [styles['card-body']])}>
 										<div className={cx(styles.photo)}>
 											<h3 key={userProfile._id} className='user sm'>
-												{userProfile.firstName} {userProfile.lastName}
+												{userProfile.suffix} {userProfile.firstName}{' '}
+												{userProfile.lastName}, {userProfile.title}
 											</h3>
 
-											<img src='/imgs/dr_cornali-headshot.jpg' alt='' />
+											<img
+												src='https://i.ibb.co/k4yG0GB/steven-kauffmann.jpg'
+												alt=''
+											/>
 											<i className='fa fa-pen-to-square'></i>
 										</div>
 
@@ -254,7 +248,7 @@ function MyProfileDetails(props) {
 												<input
 													type='text'
 													name='email'
-													value={email}
+													value={user.email}
 													onChange={(e) => setEmail(e.target.value)}
 													className={cx(
 														styles['my-1'],
@@ -287,7 +281,7 @@ function MyProfileDetails(props) {
 												<textarea
 													className={cx(['muted'], [styles.about])}
 													name='about'
-													onChange={(e) => setAbout(e.target.value)}
+													// onChange={(e) => setAbout(e.target.value)}
 													placeholder='I have been in practice for over 14 years, right here in Austin, and I take pride in treating all my patients professionally, efficiently, and repeatedly! As your physician I want to work with you to improve your overall health, not just treat the symptoms. So if you have a suggestion or want to pursue a specific type of treatment I am willing to work with you, provided there is adequate scientific fact and methodology supporting the plan of care. Its this very philosophy, scientific fact coupled with patient interest, that motivated my decision to offer both the Ideal Protein weight loss protocol and the PrEP prevention program. The field of medicine is constantly evolving and improving, and I strive to find a similar balance in my office as well.'
 												/>
 											</div>
@@ -297,9 +291,9 @@ function MyProfileDetails(props) {
 												<label className='switch' htmlFor='checkbox1'>
 													<input
 														type='checkbox'
-														onChange={(e) =>
-															setEmailNotifications(e.target.value)
-														}
+														// onChange={(e) =>
+														// 	setEmailNotifications(e.target.value)
+														// }
 													/>
 													<div
 														className={cx(
@@ -325,9 +319,9 @@ function MyProfileDetails(props) {
 												<label className='switch' htmlFor='checkbox2'>
 													<input
 														type='checkbox'
-														onChange={(e) =>
-															setSystemNotifications(e.target.value)
-														}
+														// onChange={(e) =>
+														// 	setSystemNotifications(e.target.value)
+														// }
 													/>
 													<div
 														className={cx(
@@ -366,7 +360,7 @@ function MyProfileDetails(props) {
 
 				{currentTab === 'Contact Information' && (
 					<div className='card profile-details'>
-						<form action=''>
+						<div className='form'>
 							<div
 								className={cx(styles['form-group'], ['form-group'], ['inputs'])}
 							>
@@ -437,7 +431,7 @@ function MyProfileDetails(props) {
 									Update Contact Information
 								</button>
 							</div>
-						</form>
+						</div>
 					</div>
 				)}
 			</div>

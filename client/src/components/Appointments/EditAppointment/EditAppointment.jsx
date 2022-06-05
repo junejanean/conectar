@@ -7,23 +7,17 @@ import cx from 'classnames';
 function EditAppointment(props) {
 	const {
 		setShowEditModal,
-		onEventChange,
+		onEventAdded,
 		handleUpdate,
 		selectPatients,
-		setSelectPatients,
-		date,
 		setDate,
 		patient,
 		setPatient,
 		type,
 		setType,
-		notes,
 		setNotes,
 		calEvent,
-		setCalEvent,
 	} = props;
-	const [error, setError] = useState(null);
-	// setHours(setMinutes(new Date(), 30), 16)
 
 	// close the modal when clicking outside the modal.
 	const modalRef = useRef();
@@ -62,7 +56,7 @@ function EditAppointment(props) {
 										value={patient}
 										onChange={(e) => setPatient(e.target.value)}
 									>
-										<option value={calEvent.title} selected>
+										<option value={calEvent.title} defaultValue>
 											{calEvent.title}
 										</option>
 										{selectPatients.map((p) => (
@@ -114,11 +108,10 @@ function EditAppointment(props) {
 									<button
 										type='submit'
 										className='btn'
-										onEventChange={(e) => onEventChange(e)}
+										onEventAdded={(e) => onEventAdded(e)}
 									>
 										Edit Apppointment
 									</button>
-									{error && <p>{error}</p>}
 								</div>
 							</div>
 						</form>

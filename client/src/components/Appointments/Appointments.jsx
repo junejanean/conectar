@@ -15,8 +15,7 @@ import EditAppointment from './EditAppointment/EditAppointment';
 import axios from 'axios';
 import config from '../../config';
 import { useAuthContext } from '../../hooks/useAuthContext';
-import oneSignalNotification from './oneSignal';
-import { format, parseISO } from 'date-fns';
+// import oneSignalNotification from './oneSignal';
 import id from 'date-fns/esm/locale/id/index.js';
 
 function Appointments() {
@@ -24,9 +23,7 @@ function Appointments() {
 	const [showModal, setShowModal] = useState(false);
 	const [showEditModal, setShowEditModal] = useState(false);
 	const [date, setDate] = useState();
-	const [time, setTime] = useState();
 	const [notes, setNotes] = useState();
-	const [duration, setDuration] = useState();
 	const [patient, setPatient] = useState();
 	const [type, setType] = useState('');
 	const [calEvent, setCalEvent] = useState({
@@ -59,7 +56,7 @@ function Appointments() {
 
 	// fetch all appointments
 	const fetchAppointments = async (appts) => {
-		const res = await axios.get('http://localhost:5000/appointments');
+		const res = await axios.get(config.URL + '/appointments');
 
 		appts = res.data;
 		const apptDB = appts.map((d) => {
@@ -110,14 +107,14 @@ function Appointments() {
 		});
 
 		// oneSignalNotification();
-
+		alert('Appointment has been added!');
 		setShowModal(false);
 		// window.location.reload();
 	};
 
 	// click event for clicking on indivual appointment
 	const handleEventClick = (selectInfo) => {
-		let calendarApi = selectInfo.view.calendar;
+		// let calendarApi = selectInfo.view.calendar;
 		let apptData = {
 			start: selectInfo.event.start,
 			title: selectInfo.event.title,
@@ -133,14 +130,7 @@ function Appointments() {
 	const handleUpdate = async (e) => {
 		e.preventDefault();
 
-		//fullcalandar event
-		// onEventChange({
-		// 	description: type,
-		// 	start: date,
-		// 	title: patient.lastName,
-		// });
-
-		const onSubmit = await axios.put(
+		const response = await axios.put(
 			config.URL + '/appointments/' + calEvent.id,
 			{
 				id: id,
@@ -150,12 +140,19 @@ function Appointments() {
 				notes,
 			}
 		);
-		console.log(onSubmit);
+		console.log('this is response' + response.id);
+
+		//	fullcalandar event
+		onEventAdded({
+			description: response.data.type,
+			notes: response.data.notes,
+			start: response.data.date,
+			title: `${response.data.patient.firstName} ${response.data.patient.lastName}`,
+		});
 
 		// oneSignalNotification();
-
+		alert('Appointment has been updated!');
 		setShowEditModal(false);
-		// window.location.reload();
 	};
 
 	return (
@@ -219,6 +216,7 @@ function Appointments() {
 										<EditAppointment
 											setShowEditModal={setShowEditModal}
 											handleUpdate={handleUpdate}
+											onEventAdded={(e) => onEventAdded(e)}
 											// onEventChange={(e) => onEventChange(e)}
 											date={date}
 											setDate={setDate}
