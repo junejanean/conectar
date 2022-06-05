@@ -23,20 +23,7 @@ router.get('/', async (req, res) => {
 	}
 });
 
-// UPDATE
-
-// router.put('/:id', async (req, res) => {
-// 	try {
-// 		const patchDoctor = await Doctor.findByIdAndUpdate(
-// 			request.params.id,
-// 			request.body
-// 		);
-// 		await Doctor.save();
-// 		res.send(patchDoctor);
-// 	} catch (error) {
-// 		res.status(500).send(error);
-// 	}
-// });w
+// get doctors patients
 
 router.get('/:uid/patients', async (req, res) => {
 	// try {s
@@ -52,7 +39,9 @@ router.get('/:uid/patients', async (req, res) => {
 	}
 });
 
-router.patch('/:id', async (req, res) => {
+// UPDATE
+
+router.put('/:id', async (req, res) => {
 	// try {
 	const doctor = await Doctor.findById(req.params.body);
 	// if (doctor.username === req.body.username) {
@@ -68,14 +57,6 @@ router.patch('/:id', async (req, res) => {
 	} catch (err) {
 		res.status(500).json({ error: 'Cound not update the doctor' });
 	}
-	// } else {
-	// 	res.status(401).json({
-	// 		error: 'Only the logged in doctor can edit their information',
-	// 	});
-	// }
-	// } catch (err) {
-	// 	res.status(500).json(err);
-	// }
 });
 
 // //POST
@@ -105,21 +86,5 @@ router.delete('/:id', async (req, res) => {
 		});
 	}
 });
-
-// get all doctors sorted by City
-// app.get('/doctors', async (req, res) => {
-// 	let doctors = [];
-// 	try {
-// 		const city = await
-
-// 			.find()
-// 			.sort({ City: 1 })
-// 			.forEach((doctor) => doctors.push(doctor));
-
-// 		res.status(200).json(doctors);
-// 	} catch (err) {
-// 		res.status(500).json({ error: 'Could not fetch the doctors by city' });
-// 	}
-// });
 
 module.exports = router;
