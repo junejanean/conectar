@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const dotenv = require('dotenv');
 const mongoose = require('mongoose');
-const connectDb = require('./db');
+
 const patientsRoute = require('./routes/patients');
 const doctorsRoute = require('./routes/doctors');
 const appointmentsRoute = require('./routes/appointments');
@@ -15,6 +15,9 @@ const Patient = require('./models/Patient');
 dotenv.config();
 app.use(express.json());
 app.use(cors());
+
+console.log('ggg', process.env.DATABASE_URL);
+const connectDb = require('./db');
 
 // db connection
 let db = connectDb();
