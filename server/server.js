@@ -16,7 +16,6 @@ dotenv.config();
 app.use(express.json());
 app.use(cors());
 
-console.log('ggg', process.env.DATABASE_URL);
 const connectDb = require('./db');
 
 // db connection
