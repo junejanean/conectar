@@ -100,6 +100,18 @@ function Register() {
 											<span> strong</span>
 										</small>
 									</div>
+									<div className={cx(styles.label, ['row'], ['my-2'])}>
+										<input type='radio' name='lableDrPt' id='doctor' />
+										<label htmlFor='userLabel'>
+											<p className='muted'>I am a doctor</p>
+										</label>
+
+										<input type='radio' name='lableDrPt' id='patient' />
+										<label htmlFor='userLabel'>
+											<p className='muted'>I am a patient</p>
+										</label>
+									</div>
+
 									<div className={cx(styles.privacy, ['row'], ['my-2'])}>
 										<input type='checkbox' name='privacy' id='privacyPolicy' />
 										<label htmlFor='privacyPolicy'>
