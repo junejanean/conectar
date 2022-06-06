@@ -44,7 +44,7 @@ function Appointments() {
 		(async () => {
 			if (user) {
 				const selectPatients = await axios.get(
-					`${config.URL}/doctors/${user.uid}/patients`
+					`${config.URL}doctors/${user.uid}/patients`
 				);
 				setSelectPatients(selectPatients.data);
 				// console.log(selectPatients.data);
@@ -56,7 +56,7 @@ function Appointments() {
 
 	// fetch all appointments
 	const fetchAppointments = async (appts) => {
-		const res = await axios.get(config.URL + '/appointments');
+		const res = await axios.get(config.URL + 'appointments');
 
 		appts = res.data;
 		const apptDB = appts.map((d) => {
@@ -88,7 +88,7 @@ function Appointments() {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 
-		const response = await axios.post(config.URL + '/appointments', {
+		const response = await axios.post(config.URL + 'appointments', {
 			date: new Date(date),
 			type,
 			patient,
@@ -131,7 +131,7 @@ function Appointments() {
 		e.preventDefault();
 
 		const response = await axios.put(
-			config.URL + '/appointments/' + calEvent.id,
+			config.URL + 'appointments/' + calEvent.id,
 			{
 				id: id,
 				date: date,

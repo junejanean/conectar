@@ -26,7 +26,7 @@ function Dashboard() {
 	};
 
 	const fetchAppointments = async () => {
-		const res = await axios.get(config.URL + '/appointments');
+		const res = await axios.get(config.URL + 'appointments');
 		setApptDetails(res.data);
 
 		console.log('response via db: ', res.data);

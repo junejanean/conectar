@@ -30,7 +30,7 @@ function MyProfileDetails(props) {
 
 	const fetchUser = async () => {
 		if (user) {
-			const res = await axios.get(config.URL + '/whoami/' + user.uid);
+			const res = await axios.get(config.URL + 'whoami/' + user.uid);
 			setUserProfile(res.data.doctor);
 			setDoctor(res.data.doctor._id);
 		}
@@ -40,7 +40,7 @@ function MyProfileDetails(props) {
 
 	const handleUpdate = async () => {
 		try {
-			const res = await axios.put(config.URL + '/doctors/' + doctorId, {
+			const res = await axios.put(config.URL + 'doctors/' + doctorId, {
 				firstName,
 				lastName,
 				middleName,
