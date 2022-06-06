@@ -41,8 +41,8 @@ app.get('*', (req, res) => {
 });
 const PORT = process.env.PORT || 5000;
 
-mongoose.connection.once('open', () => {
-	app.listen(PORT, () => {
-		console.log(`server running on ${PORT}`);
-	});
+// mongoose.connection.once('open', () => {
+app.listen(PORT, () => {
+	console.log(`server running on ${PORT}`);
 });
+// });
