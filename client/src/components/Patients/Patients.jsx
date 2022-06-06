@@ -9,6 +9,7 @@ import PatientList from './PatientList/PatientList';
 import AddPatient from './AddPatient/AddPatient';
 import axios from 'axios';
 import PatientDetails from './PatientDetails/PatientDetails';
+import config from '../../config';
 
 function Patients() {
 	const [patient, setPatient] = useState([]);
@@ -34,8 +35,6 @@ function Patients() {
 	);
 	const [notes, setNotes] = useState(currentPatient.notes);
 
-	const url = process.env.REACT_APP_API_URL;
-
 	// const openModal = () => {
 	// 	setShowModal(true);
 	// };
@@ -52,7 +51,7 @@ function Patients() {
 	};
 
 	const fetchPatients = async () => {
-		const res = await axios.get(url + '/patients', {
+		const res = await axios.get(config.URL + 'patients', {
 			params: {
 				_limit: 200,
 				sort: 'lastName',
@@ -63,20 +62,23 @@ function Patients() {
 
 	const handleUpdate = async () => {
 		try {
-			const res = await axios.put(url + '/patients/' + currentPatient._id, {
-				firstName,
-				lastName,
-				birthDate,
-				gender,
-				email,
-				phone,
-				address,
-				city,
-				state,
-				zip,
-				medicalHistory,
-				notes,
-			});
+			const res = await axios.put(
+				config.URL + 'patients/' + currentPatient._id,
+				{
+					firstName,
+					lastName,
+					birthDate,
+					gender,
+					email,
+					phone,
+					address,
+					city,
+					state,
+					zip,
+					medicalHistory,
+					notes,
+				}
+			);
 			setCurrentPatient(res.data);
 			setPatient((prevState) =>
 				prevState.map((patient) => {
