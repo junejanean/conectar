@@ -8,7 +8,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "heroku-postbuild": "cd client && npm install && npm run build",
     "dev": "concurrently \"cd server && npm run dev\" \"cd client && npm start\" ",
-    "start": "nodemon server.js"
+    "start": "concurrently --kill-others-on-fail \"npm run server\" \"npm run start --prefix client\""
   },
   "repository": {
     "type": "git",
