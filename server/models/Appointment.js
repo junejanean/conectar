@@ -8,6 +8,7 @@ const appointmentSchema = new Schema(
 		duration: String,
 		notes: String,
 		date: Date,
+		confirmed: Boolean,
 		patient: {
 			type: ObjectId,
 			ref: 'Patient',

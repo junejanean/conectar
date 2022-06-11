@@ -6,7 +6,14 @@ import Footer from '../Footer/Footer';
 import DashboardCalendar from './DashboardCalendar/DashboardCalendar';
 import DashboardStats from './DashboardStats/DashboardStats';
 import axios from 'axios';
-import { format, parseISO, isValid } from 'date-fns';
+import {
+	format,
+	parseISO,
+	isValid,
+	isToday,
+	subDays,
+	isYesterday,
+} from 'date-fns';
 import { Link } from 'react-router-dom';
 import config from '../../config';
 
@@ -15,6 +22,14 @@ function Dashboard() {
 	const [selectedAppointment, setSelectedAppointment] = useState([]);
 	const fullDateToday = format(new Date(), 'MMMM d, yyyy');
 	const today = format(new Date(), 'EEEE');
+	const todayJS = new Date().toDateString();
+	console.log(todayJS);
+
+	/* const apptDate = format(parsedDate, 'd'); */
+
+	// console.log(apptDate + '=' + todayJS);
+
+	/* const todayDate = format(parsedDate, 'MM-dd-y'); */
 
 	const handleToggle = (index) => {
 		if (selectedAppointment.includes(index)) {
@@ -26,7 +41,12 @@ function Dashboard() {
 	};
 
 	const fetchAppointments = async () => {
-		const res = await axios.get(config.URL + 'appointments');
+		const res = await axios.get(config.URL + 'appointments', {
+			params: {
+				_limit: 100,
+				sort: 'date',
+			},
+		});
 		setApptDetails(res.data);
 
 		console.log('response via db: ', res.data);
@@ -35,6 +55,14 @@ function Dashboard() {
 	useEffect(() => {
 		fetchAppointments();
 	}, []);
+
+	const todaysAppointments = apptDetails
+		?.filter((d) => {
+			return isToday(new Date(d.date));
+		})
+		.filter((d) => {
+			return d.notes === 'notes';
+		});
 
 	return (
 		<>
@@ -69,59 +97,69 @@ function Dashboard() {
 								<div className='card'>
 									<div className='appointments'>
 										<div className='card appt-header'>
-											<p className='confirm'>5 Confirmed Appointments Today</p>
+											<p className='confirm'>
+												{todaysAppointments && todaysAppointments.length}{' '}
+												Confirmed Appointments Today
+											</p>
 											<p className='date'>
 												Today is {today} {fullDateToday}
 											</p>
 										</div>
-										{apptDetails?.map((d, i) => {
-											const { date, patient, type, notes } = d;
+										{todaysAppointments &&
+											todaysAppointments.map((d, i) => {
+												const parsedDate = parseISO(d.date);
 
-											const parsedDate = parseISO(date);
+												const time = isValid(parsedDate)
+													? format(parsedDate, 'K:mm a')
+													: null;
 
-											const time = isValid(parsedDate)
-												? format(parsedDate, 'K:mm a')
-												: null;
-											console.log(time);
-											const appointmentIsBlocked = type === 'blocked';
+												const appointmentIsBlocked = d.type === 'blocked';
 
-											const appointmentHasBeenSelected =
-												selectedAppointment.includes(i);
+												const appointmentHasBeenSelected =
+													selectedAppointment.includes(i);
 
-											let chevronIcon = appointmentHasBeenSelected
-												? 'fa-chevron-down'
-												: 'fa-chevron-up';
+												let chevronIcon = appointmentHasBeenSelected
+													? 'fa-chevron-down'
+													: 'fa-chevron-up';
 
-											if (appointmentIsBlocked) {
-												chevronIcon = '';
-											}
+												if (appointmentIsBlocked) {
+													chevronIcon = '';
+												}
 
-											return (
-												<div className='card-wrapper' key={i}>
-													<div className='card single-appt'>
-														<p className='time'>{time || 'N/A'}</p>
-														{patient && (
-															<p className='name'>
-																{patient.firstName} {patient.lastName}
-															</p>
-														)}
-														<p className='status'>Confirmed</p>
-														<p className='appt-type'>{type}</p>
-														<i
-															className={`fa-solid p-1 ${chevronIcon}`}
-															onClick={() => handleToggle(i)}
-														></i>
-													</div>
-													{!appointmentIsBlocked && appointmentHasBeenSelected && (
-														<div className='appt-details'>
-															<div className='card single-appt'>
-																<p className='description'>{notes}</p>
-															</div>
+												return (
+													<div className='card-wrapper' key={i}>
+														<div className='card single-appt'>
+															<p className='time'>{time || 'N/A'}</p>
+															{d.patient && (
+																<p className='name'>
+																	{d.patient.firstName} {d.patient.lastName}
+																</p>
+															)}
+															<p className='status'>Confirmed</p>
+															<p className='appt-type'>{d.type}</p>
+															<i
+																className={`fa-solid p-1 ${chevronIcon}`}
+																onClick={() => handleToggle(i)}
+															></i>
 														</div>
-													)}
-												</div>
-											);
-										})}
+														{!appointmentIsBlocked &&
+															appointmentHasBeenSelected && (
+																<div className='appt-details'>
+																	<div className='card single-appt'>
+																		<p className='description'>{d.notes}</p>
+																	</div>
+																</div>
+															)}
+													</div>
+												);
+											})}
+										{/* {apptDetails.date === todayJS ? (
+											<div className='card-wrapper'>
+												<h2>There are no appointments today</h2>
+											</div>
+										) : (
+											<></>
+										)} */}
 									</div>
 								</div>
 							</div>

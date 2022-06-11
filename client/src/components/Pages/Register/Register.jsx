@@ -101,14 +101,17 @@ function Register() {
 										</small>
 									</div>
 									<div className={cx(styles.label, ['row'], ['my-2'])}>
+										<p className={cx(styles.select, ['muted'])}>
+											<small> Please select one:</small>
+										</p>
 										<input type='radio' name='lableDrPt' id='doctor' />
 										<label htmlFor='userLabel'>
-											<p className='muted'>I am a doctor</p>
+											<p className='muted'>Doctor</p>
 										</label>
 
 										<input type='radio' name='lableDrPt' id='patient' />
 										<label htmlFor='userLabel'>
-											<p className='muted'>I am a patient</p>
+											<p className='muted'>Patient</p>
 										</label>
 									</div>
 
