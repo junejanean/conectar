@@ -18,6 +18,8 @@ function NewAppointment(props) {
 		setType,
 		notes,
 		setNotes,
+		mobile,
+		setMobile,
 	} = props;
 
 	// close the modal when clicking outside the modal.
@@ -26,6 +28,10 @@ function NewAppointment(props) {
 		if (e.target === modalRef.current) {
 			setShowModal(false);
 		}
+	};
+
+	const clearInput = () => {
+		setMobile('');
 	};
 
 	return ReactDom.createPortal(
@@ -53,11 +59,16 @@ function NewAppointment(props) {
 								<div className={cx(styles.row, ['row'])}>
 									<label>Patient:</label>
 									<select
-										name='type'
+										name='patient'
 										value={patient}
 										onChange={(e) => setPatient(e.target.value)}
 									>
-										<option value='' selected disabled hidden>
+										<option
+											value='Select Patient'
+											selected
+											defaultValue
+											disabled
+										>
 											Select Patient
 										</option>
 										{selectPatients.map((p) => (
@@ -74,7 +85,7 @@ function NewAppointment(props) {
 										value={type}
 										onChange={(e) => setType(e.target.value)}
 									>
-										<option value='' defaultValue disabled hidden>
+										<option value='' defaultValue disabled>
 											Select Appointment Type
 										</option>
 										<option value='Consult'>Consult</option>
@@ -83,7 +94,7 @@ function NewAppointment(props) {
 										<option value='Test Results'>Test Results</option>
 									</select>
 								</div>
-								<div className={cx(styles.row, ['row'])}>
+								<div className={cx(styles.row, styles.picker, ['row'])}>
 									<label htmlFor=''>Date & Time</label>
 									<DateTimePicker
 										selected={date}
@@ -102,6 +113,15 @@ function NewAppointment(props) {
 										cols='30'
 										rows='5'
 									></textarea>
+								</div>
+								<div className={cx(styles.row, ['row'])}>
+									<label htmlFor=''>Mobile</label>
+									<input
+										onChange={(e) => setMobile(e.target.value)}
+										value={mobile}
+										onClick={clearInput}
+										defaultValue='Enter your mobile for SMS notifications'
+									></input>
 								</div>
 
 								<div className={cx(styles.privacy, ['row'], ['my-2'])}></div>

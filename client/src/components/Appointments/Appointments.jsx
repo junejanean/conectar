@@ -15,7 +15,6 @@ import EditAppointment from './EditAppointment/EditAppointment';
 import axios from 'axios';
 import config from '../../config';
 import { useAuthContext } from '../../hooks/useAuthContext';
-// import oneSignalNotification from './oneSignal';
 import id from 'date-fns/esm/locale/id/index.js';
 
 function Appointments() {
@@ -26,6 +25,9 @@ function Appointments() {
 	const [notes, setNotes] = useState();
 	const [patient, setPatient] = useState();
 	const [type, setType] = useState('');
+	const [mobile, setMobile] = useState(
+		'Enter your mobile for SMS notifications'
+	);
 	const [calEvent, setCalEvent] = useState({
 		start: date,
 		title: patient,
@@ -47,9 +49,7 @@ function Appointments() {
 					`${config.URL}doctors/${user.uid}/patients`
 				);
 				setSelectPatients(selectPatients.data);
-				// console.log(selectPatients.data);
 			}
-
 			fetchApptCallback();
 		})();
 	}, [user, fetchApptCallback]);
@@ -59,13 +59,15 @@ function Appointments() {
 		const res = await axios.get(config.URL + 'appointments');
 
 		appts = res.data;
+
 		const apptDB = appts.map((d) => {
 			return {
 				id: d._id,
 				description: d.type,
 				start: d.date,
-				title: d.patient.lastName,
+				title: `${d.patient.firstName} ${d.patient.lastName}`,
 				notes: d.notes,
+				patientId: d.patient._id,
 			};
 		});
 		// console.log(apptDB);
@@ -93,11 +95,12 @@ function Appointments() {
 			type,
 			patient,
 			notes,
+			mobile,
 		});
 
 		console.log(response);
 
-		// fullcalandar event
+		// fullcalandar add new appointment
 		onEventAdded({
 			id: response.data._id,
 			type: response.data.type,
@@ -123,6 +126,9 @@ function Appointments() {
 			id: selectInfo.event.id,
 		};
 		setCalEvent(apptData);
+		setDate(selectInfo.event.start);
+		setPatient(selectInfo.event.extendedProps.patientId);
+		setType(apptData.description);
 		setShowEditModal(true);
 	};
 
@@ -140,15 +146,32 @@ function Appointments() {
 				notes,
 			}
 		);
-		console.log('this is response' + response.id);
+
+		console.log(apptDetails);
+
+		setApptDetails((prevState) =>
+			prevState.map((appointment) => {
+				if (appointment.id === response.data._id) {
+					return {
+						id: response.data._id,
+						description: response.data.type,
+						notes: response.data.notes,
+						start: response.data.date,
+						title: `${response.data.patient.firstName} ${response.data.patient.lastName}`,
+					};
+				}
+
+				return appointment;
+			})
+		);
 
 		//	fullcalandar event
-		onEventAdded({
-			description: response.data.type,
-			notes: response.data.notes,
-			start: response.data.date,
-			title: `${response.data.patient.firstName} ${response.data.patient.lastName}`,
-		});
+		// onEventAdded({
+		// 	description: response.data.type,
+		// 	notes: response.data.notes,
+		// 	start: response.data.date,
+		// 	title: `${response.data.patient.firstName} ${response.data.patient.lastName}`,
+		// });
 
 		// oneSignalNotification();
 		alert('Appointment has been updated!');
@@ -182,7 +205,7 @@ function Appointments() {
 										eventClick={handleEventClick}
 										customButtons={{
 											myCustomButton: {
-												text: 'Add Event',
+												text: 'Add Appointment',
 												click: function () {
 													openModal();
 												},
@@ -207,6 +230,8 @@ function Appointments() {
 											setNotes={setNotes}
 											patient={patient}
 											setPatient={setPatient}
+											mobile={mobile}
+											setMobile={setMobile}
 											selectPatients={selectPatients}
 											setSelectPatients={setSelectPatients}
 										/>

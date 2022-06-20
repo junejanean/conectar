@@ -6,14 +6,7 @@ import Footer from '../Footer/Footer';
 import DashboardCalendar from './DashboardCalendar/DashboardCalendar';
 import DashboardStats from './DashboardStats/DashboardStats';
 import axios from 'axios';
-import {
-	format,
-	parseISO,
-	isValid,
-	isToday,
-	subDays,
-	isYesterday,
-} from 'date-fns';
+import { format, parseISO, isValid, isToday } from 'date-fns';
 import { Link } from 'react-router-dom';
 import config from '../../config';
 
@@ -23,13 +16,6 @@ function Dashboard() {
 	const fullDateToday = format(new Date(), 'MMMM d, yyyy');
 	const today = format(new Date(), 'EEEE');
 	const todayJS = new Date().toDateString();
-	console.log(todayJS);
-
-	/* const apptDate = format(parsedDate, 'd'); */
-
-	// console.log(apptDate + '=' + todayJS);
-
-	/* const todayDate = format(parsedDate, 'MM-dd-y'); */
 
 	const handleToggle = (index) => {
 		if (selectedAppointment.includes(index)) {
@@ -56,13 +42,16 @@ function Dashboard() {
 		fetchAppointments();
 	}, []);
 
-	const todaysAppointments = apptDetails
-		?.filter((d) => {
-			return isToday(new Date(d.date));
-		})
-		.filter((d) => {
-			return d.notes === 'notes';
-		});
+	const todaysAppointments =
+		apptDetails
+			?.filter((d) => {
+				return isToday(new Date(d.date));
+			})
+			.filter((d) => {
+				return d.notes === 'notes';
+			}) || [];
+
+	console.log(todaysAppointments);
 
 	return (
 		<>
@@ -98,7 +87,9 @@ function Dashboard() {
 									<div className='appointments'>
 										<div className='card appt-header'>
 											<p className='confirm'>
-												{todaysAppointments && todaysAppointments.length}{' '}
+												{todaysAppointments.length === 0
+													? 'No'
+													: todaysAppointments.length}{' '}
 												Confirmed Appointments Today
 											</p>
 											<p className='date'>
@@ -153,13 +144,6 @@ function Dashboard() {
 													</div>
 												);
 											})}
-										{/* {apptDetails.date === todayJS ? (
-											<div className='card-wrapper'>
-												<h2>There are no appointments today</h2>
-											</div>
-										) : (
-											<></>
-										)} */}
 									</div>
 								</div>
 							</div>

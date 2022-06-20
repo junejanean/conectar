@@ -8,6 +8,7 @@ const appointmentSchema = new Schema(
 		duration: String,
 		notes: String,
 		date: Date,
+		mobile: String,
 		confirmed: Boolean,
 		patient: {
 			type: ObjectId,

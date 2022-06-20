@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useRef } from 'react';
 import ReactDom from 'react-dom';
 import styles from '../Appointments.module.scss';
 import DateTimePicker from 'react-datepicker';
@@ -6,6 +6,7 @@ import cx from 'classnames';
 
 function EditAppointment(props) {
 	const {
+		date,
 		setShowEditModal,
 		onEventAdded,
 		handleUpdate,
@@ -23,8 +24,14 @@ function EditAppointment(props) {
 	const modalRef = useRef();
 	const closeModal = (e) => {
 		if (e.target === modalRef.current) {
-			setShowEditModal(false);
+			console.log('1');
 		}
+
+		setShowEditModal(false);
+		setPatient('');
+		setType('');
+		setNotes('');
+		setDate('');
 	};
 
 	return ReactDom.createPortal(
@@ -32,10 +39,10 @@ function EditAppointment(props) {
 			<div
 				className={cx(styles.modal, ['modal'])}
 				ref={modalRef}
-				onClick={closeModal}
+				style={{ position: 'relative', zIndex: 100 }}
 			>
 				<div className='card profile-details'>
-					<button onClick={() => setShowEditModal(false)}>X</button>
+					<button onClick={closeModal}>X</button>
 					<div className='card-body'>
 						<h2>Edit Appointment</h2>
 						<form
@@ -56,9 +63,6 @@ function EditAppointment(props) {
 										value={patient}
 										onChange={(e) => setPatient(e.target.value)}
 									>
-										<option value={calEvent.title} defaultValue>
-											{calEvent.title}
-										</option>
 										{selectPatients.map((p) => (
 											<option key={p._id} value={p._id}>
 												{p.firstName} {p.lastName}
@@ -73,8 +77,11 @@ function EditAppointment(props) {
 										value={type}
 										onChange={(e) => setType(e.target.value)}
 									>
-										<option value={calEvent.description}>
+										{/* <option value={calEvent.description}>
 											{calEvent.description}
+										</option> */}
+										<option value='' disabled>
+											Please select type
 										</option>
 										<option value='Consult'>Consult</option>
 										<option value='New Patient'>New Patient</option>
@@ -85,7 +92,7 @@ function EditAppointment(props) {
 								<div className={cx(styles.row, ['row'])}>
 									<label htmlFor=''>Date & Time</label>
 									<DateTimePicker
-										selected={calEvent.start}
+										selected={date}
 										onChange={(date) => setDate(date)}
 										showTimeSelect
 										dateFormat='MMMM d, yyyy h:mm aa'
@@ -118,6 +125,10 @@ function EditAppointment(props) {
 					</div>
 				</div>
 			</div>
+			<div
+				onClick={closeModal}
+				style={{ position: 'fixed', height: '100vh', width: '100vw' }}
+			></div>
 		</div>,
 		document.getElementById('portal')
 	);

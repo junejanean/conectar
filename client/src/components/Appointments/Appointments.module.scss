@@ -16,6 +16,12 @@ button {
   width: 80%;
   color: variables.$muted;
 }
+.form-group.update input {
+  width: 75%;
+}
+.form-group.update .picker input {
+  width: 100%;
+}
 
 .modal .row {
   justify-content: space-between;

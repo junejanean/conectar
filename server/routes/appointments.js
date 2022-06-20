@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const Appointment = require('../models/Appointment');
-const { compareAsc, format } = require('date-fns');
+const { sendNotification, mobile } = require('../scripts/push/twilio');
+const { formatDate } = require('../utilities');
 
 const db = require('../db');
 
@@ -47,7 +48,12 @@ router.post('/', async (req, res) => {
 	try {
 		const savedAppointment = await newAppointment.save();
 		await savedAppointment.populate('patient');
-		//.populate('doctors')
+
+		// send sms appointment notification via Twilio
+		await sendNotification(
+			req.body.mobile,
+			`Your appointment has been confirmed for ${formatDate(req.body.date)}!`
+		);
 
 		res.status(201).json(newAppointment);
 	} catch (err) {
@@ -69,7 +75,17 @@ router.put('/:id', async (req, res) => {
 				$set: req.body,
 			},
 			{ new: true }
-		);
+		).populate('patient');
+
+		// createNotification({
+		// 	included_segments: ['Subscribed Users'],
+		// 	data: {
+		// 		foo: 'bar',
+		// 	},
+		// 	contents: {
+		// 		en: 'Your appointment is confirmed!',
+		// 	},
+		// });
 
 		res.status(200).json(updatedAppointment);
 	} catch (err) {
