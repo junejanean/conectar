@@ -492,3 +492,183 @@ input:checked + .slider:before {
   .p-5 {
     padding: 4rem ;
   }
+
+/* Landing */
+
+  .main-content.landing {
+    position: relative;
+    grid-template-columns: none;
+    height: 80vh;
+  }
+  .main-content.landing .container {
+    padding: 0 4.7rem;
+    color: white;
+    font-weight: 100;
+    overflow:visible;
+    height: 100%;
+  }
+  .main-content.landing .showcase.grid {
+    position: relative;
+    overflow: hidden;
+    grid-template-columns: 50% 35%;
+    gap: 30px;
+    align-items: center;
+  }
+  .showcase h1 {
+    font-size:3rem;
+  }
+  .showcase img {
+    width: 75%;
+    margin-left:2rem;
+  }
+  .showcase .btn {
+    font-weight: 100;
+  }
+
+
+ /* TopNav */
+  .navbar-horizontal  {
+    position: relative;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+    border: 0;
+    box-shadow: none;
+    display: flex;
+    align-items: center;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+    color: white;
+  }
+  .navbar-horizontal .container {
+    width: 100%;
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 0 25px;
+  }
+  .navbar-horizontal .container img {
+    width: auto;
+    cursor: pointer;
+  }
+  .navbar-horizontal .container h1,
+  .navbar-horizontal .container nav ul,
+  .navbar-horizontal .container .social {
+    display: flex;
+    flex-direction: row;
+  }
+  .navbar-horizontal .container nav ul li,
+  .navbar-horizontal .social a {
+    padding: 0 1rem;
+    font-size:.875rem;
+  }
+  .navbar-horizontal .container nav ul li {
+    font-weight: 200;
+    line-height: 1.5;
+    padding-right: 1.2rem;
+    cursor: pointer;
+    color: hsla(0,0%,100%,.95);
+  }
+  .navbar-horizontal .container nav ul li a:hover,
+  .navbar-horizontal .container .social a:hover,
+  .navbar-horizontal .container img a:hover {
+    color: hsla(0,0%,100%,.65);
+  }
+
+   /* Header */
+  header {
+    color: $lightgrey;
+    height: 55px;
+  }
+  .header.flex {
+    justify-self: flex-start;
+    justify-content: right;
+    flex-grow: 1;
+    align-items: center;
+  }
+  .header {
+    flex-flow: row wrap;
+    padding: 15px;
+    &:hover {
+      color: $opacity-hover;
+    }
+  }
+  .header h2.flex-item {
+    flex-grow: 30;
+  }
+  .header img {
+    background-color: $rose;
+    width:38px;
+    height: 38px;
+    border-radius:50%;
+    margin-right: 20px;
+  }
+  .header-right {
+    display: flex;
+    align-content: flex-end;
+    margin-right: 10px;
+    align-items: center;
+    cursor: pointer;
+  }
+  .header-right p {
+    margin-right: 1rem;
+    font-size: .7rem;
+    opacity: .9;
+  }
+  
+  header h3 {
+    font-weight: 300;
+    padding-top: 5px;
+    cursor: pointer;
+    color: $lightgrey;
+    &:hover {
+      color: $opacity-hover;
+    }
+  }
+  header h3:hover, header-right p:hover, header img:hover {
+    color: $opacity-hover;
+  }
+  header .dropdown {
+    top: 25px;
+    right: -5px;
+  }
+  header .dropdown-menu.card {
+    padding: 0;
+    margin: 0;
+  }
+
+
+ /* Footer */
+ .footer {
+  color:$white;
+  font-size: .8rem;
+  font-weight: 200;
+}
+.footer .flex {
+  justify-content: space-between;
+  align-items: center;
+}
+.footer .copyright {
+  display: flex;
+  justify-content: left;
+  align-items:center;
+}
+.footer .copyright p {
+  padding-right: 10px;
+}
+.footer .footer-nav {
+  display:flex;
+  flex-direction: row;
+  justify-content: right;
+  align-items: center;
+
+}
+.footer .footer-nav ul {
+  display: flex;
+  flex-direction: row;
+}
+.footer .footer-nav ul li {
+  padding: 0 0 0 15px;
+}

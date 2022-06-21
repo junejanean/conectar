@@ -2,7 +2,6 @@ import React from 'react';
 import { useLogout } from '../../../hooks/useLogout';
 import { useAuthContext } from '../../../hooks/useAuthContext';
 import { Link } from 'react-router-dom';
-import './Navbar.scss';
 
 function Navbar() {
 	const { logout } = useLogout();

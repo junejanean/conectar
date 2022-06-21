@@ -1,0 +1,6 @@
+@use '../../../styles/_variables';
+
+
+body {
+  background: linear-gradient(87deg, variables.$brightblue, variables.$deepblue);
+}

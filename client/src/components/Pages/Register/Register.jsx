@@ -25,7 +25,7 @@ function Register() {
 		<>
 			<Navbar />
 			<div className='main-content landing'>
-				<div className={cx(styles.container, ['container'], ['register'])}>
+				<div className={cx(styles.container, ['container'], styles.register)}>
 					<div className='row my-2'>
 						<div className={cx(styles.card, ['card'])}>
 							<div className='card-header'>

@@ -1,17 +1,18 @@
 import React from 'react';
-import './Sidebar.scss';
+import cx from 'classnames';
+import styles from './Sidebar.module.scss';
 import { Link } from 'react-router-dom';
 
 function Sidebar() {
 	return (
-		<div className='sidebar'>
-			<div className='logo'>
+		<div className={styles.sidebar}>
+			<div className={styles.logo}>
 				<Link to='/'>
 					<img src='/imgs/logo/conectar_logo_head_blue.png' alt='' />
 				</Link>
 			</div>
-			<div className='nav-container flex p-2'>
-				<div className='nav flex'>
+			<div className={cx(styles.flex, ['p-2'], styles['nav-container'])}>
+				<div className={cx(styles.nav, styles.flex)}>
 					<ul>
 						<li>
 							<Link to='/Dashboard'>
@@ -29,7 +30,7 @@ function Sidebar() {
 							</Link>
 						</li>
 					</ul>
-					<div className='settings'>
+					<div className={styles.settings}>
 						<Link to='/MyProfile'>
 							<i className='fa-solid fa-gear p-1 rose'></i>MyProfile
 						</Link>

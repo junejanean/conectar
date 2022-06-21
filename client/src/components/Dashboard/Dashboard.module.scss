@@ -3,23 +3,7 @@
 .dashboard {
   margin: 20px;
   flex-flow: column;
-
 }
-/* for landing page */
-/* .dashboard::before, .dashboard::after {
-  content: '';
-  position: absolute;
-  height: 100px;
-  bottom: -70px;
-  right: 0;
-  left: 0;
-  background: white;
-  transform: skewY(-5deg);
-  -webkit-transform:skewY(-5deg);
-  -moz-transform: skewY(-5deg);
-  -ms-transform: skewY(-5deg);
-} */
-
 .dashboard .card {
   margin: 20px 0;
 }
@@ -33,10 +17,6 @@
   max-width: none;
   width: auto;
   padding: 0 15px;
-
-}
-.dashboard .calendar h2 {
-
 }
 .dashboard h1 {
   color: variables.$white;
@@ -125,8 +105,4 @@
   flex-grow:3;
   justify-content: right;
   text-align: right;
-}
-
-.p-datepicker-month.p-link {
-  margin: 0 .3rem
 }

@@ -1,7 +1,7 @@
 import React from 'react';
-import './Landing.scss';
 import Navbar from '../Navbar/Navbar';
 import Footer from '../../Footer/Footer';
+import './Landing.module.scss';
 
 function Landing() {
 	return (

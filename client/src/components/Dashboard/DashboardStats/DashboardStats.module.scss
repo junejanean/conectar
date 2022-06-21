@@ -3,7 +3,6 @@
 .row {
   justify-content: space-between;
 }
-
 .card .icon {
   position: absolute;
   top: 20px;
@@ -12,7 +11,6 @@
 h5 {
   color: variables.$muted;
 }
-
 .card .icon {
   width:2.5rem;
   height:2.5rem;
@@ -24,7 +22,6 @@ h5 {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  
 }
 .card.stats-red .icon  {
   background: variables.$red-grad;
@@ -35,7 +32,6 @@ h5 {
 .card.stats-green .icon  {
   background: variables.$green-grad;
 }
-
 
 .card .icon i {
     font-size: 1.25rem;

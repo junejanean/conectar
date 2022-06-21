@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './Footer.scss';
 
 function Footer() {
 	return (
@@ -8,7 +7,10 @@ function Footer() {
 			<footer className='footer py-1'>
 				<div className='container flex'>
 					<div className='copyright'>
-						<p>Conectar | Copyright &copy; 2022</p>
+						<p>
+							{' '}
+							<Link to='/'>Conectar </Link>| Copyright &copy; 2022
+						</p>
 					</div>
 					<nav className='footer-nav'>
 						<ul>
