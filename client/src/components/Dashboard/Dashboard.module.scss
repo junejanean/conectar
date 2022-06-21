@@ -1,9 +1,6 @@
 @use '../../styles/_variables';
 
-.dashboard {
-  margin: 20px;
-  flex-flow: column;
-}
+
 .dashboard .card {
   margin: 20px 0;
 }
@@ -17,9 +14,6 @@
   max-width: none;
   width: auto;
   padding: 0 15px;
-}
-.dashboard h1 {
-  color: variables.$white;
 }
 .dashboard .appointments {
   width: 100%;

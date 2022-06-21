@@ -366,6 +366,25 @@ input:checked + .slider:before {
      cursor: pointer;
    }
 
+  /* Dashboard shared styles */
+   .dashboard {
+    margin: 20px;
+    flex-flow: column;
+  }
+  .dashboard .card {
+    margin: 20px 0;
+  }
+  .dashboard .grid {
+    overflow: visible;
+    grid-template-columns: 40% 60%;
+    gap: 30px;
+    height: auto;
+  }
+  .dashboard .container {
+    max-width: none;
+    width: auto;
+    padding: 0 15px;
+  }
   
   /* Text sizes */
   h1, h2 {
@@ -375,6 +394,7 @@ input:checked + .slider:before {
   }
   h1 {
     font-size: 3rem;
+    color: $white;
   }
 
   h5 {

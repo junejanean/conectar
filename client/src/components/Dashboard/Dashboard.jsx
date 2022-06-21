@@ -60,7 +60,7 @@ function Dashboard() {
 					<Sidebar />
 					<div className='main-container'>
 						<Header />
-						<div className={styles.dashboard}>
+						<div className={cx(styles.dashboard, ['dashboard'])}>
 							<h1>Dashboard</h1>
 
 							<DashboardStats />
